@@ -1,0 +1,27 @@
+<!-- app/templates/users.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+Users - School Management App
+{% endblock %}
+
+{% block content %}
+<h2>Users</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
