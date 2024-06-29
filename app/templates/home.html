@@ -8,6 +8,6 @@ Home Page - School Management App
 
 {% block content %}
 <h2>Welcome to the School Management App</h2>
-<p><a href="/users">View Users</a></p>
-<!-- Future login button will go here -->
+<p><a href="{{ url_for('main.login') }}">Login</a></p>
+<p><a href="{{ url_for('main.users') }}">View Users</a></p>
 {% endblock %}
