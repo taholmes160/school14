@@ -39,3 +39,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.home'))
+
+@main.route('/status')
+def status():
+    return f"Authenticated: {current_user.is_authenticated}, User: {current_user}"
