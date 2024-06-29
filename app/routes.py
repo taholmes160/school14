@@ -25,7 +25,9 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user)
             print(f"User {user.username} logged in successfully.")
+            print(f"Current user: {current_user.is_authenticated}")
             next_page = request.args.get('next')
+            print(f"Next page: {next_page}")
             return redirect(next_page or url_for('main.users'))
         else:
             flash('Invalid username or password')
