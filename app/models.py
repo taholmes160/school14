@@ -51,8 +51,8 @@ class User(UserMixin, db.Model):
         return True
 
     @property
-    def is_active(self):
-        return True
+    def is_active_user(self):
+        return self.is_active
 
     @property
     def is_anonymous(self):
