@@ -57,3 +57,113 @@ class User(UserMixin, db.Model):
     @property
     def is_anonymous(self):
         return False
+
+class StudentProfile(db.Model):
+    __tablename__ = 'student_profiles'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    age = db.Column(db.Integer)
+    grade = db.Column(db.String(10))
+    address = db.Column(db.String(255))
+    parent_guardian = db.Column(db.String(255))
+    demographic_info = db.Column(db.Text)
+    discipline_records = db.Column(db.Text)
+    gender_id = db.Column(db.Integer, db.ForeignKey('genders.id'))
+    racial_category_id = db.Column(db.Integer, db.ForeignKey('racial_categories.id'))
+    ethnic_background_id = db.Column(db.Integer, db.ForeignKey('ethnic_backgrounds.id'))
+    country_id = db.Column(db.Integer, db.ForeignKey('countries.id'))
+    date_of_birth = db.Column(db.Date)
+    place_of_birth = db.Column(db.String(255))
+    pronouns = db.Column(db.String(50))
+    phone_number = db.Column(db.String(20))
+    email = db.Column(db.String(120))
+    emergency_contacts = db.relationship('EmergencyContact', backref='student', lazy=True)
+    siblings = db.relationship('Sibling', backref='student', lazy=True)
+    family_structure = db.Column(db.String(50))
+    custodial_arrangements = db.Column(db.Text)
+    hispanic_latino_origin = db.Column(db.Boolean)
+    primary_language = db.Column(db.String(50))
+    other_languages = db.Column(db.String(50))
+    english_proficiency = db.Column(db.String(50))
+    esl_ell_status = db.Column(db.Boolean)
+    citizenship_status = db.Column(db.String(50))
+    immigration_status = db.Column(db.String(50))
+    date_of_entry_us = db.Column(db.Date)
+    free_reduced_lunch_eligibility = db.Column(db.Boolean)
+    family_income_bracket = db.Column(db.String(50))
+    parent_education_level = db.Column(db.String(50))
+    parent_occupation = db.Column(db.String(50))
+    current_grade_level = db.Column(db.String(10))
+    previous_schools = db.Column(db.Text)
+    date_of_entry_school_system = db.Column(db.Date)
+    projected_graduation_year = db.Column(db.Date)
+    iep_status = db.Column(db.Boolean)
+    plan_504_status = db.Column(db.Boolean)
+    gifted_talented_program = db.Column(db.Boolean)
+    transportation = db.Column(db.String(50))
+    bus_route_number = db.Column(db.String(50))
+    sports_team_participation = db.Column(db.Text)
+    club_memberships = db.Column(db.Text)
+    after_school_program = db.Column(db.Text)
+    internet_access = db.Column(db.Boolean)
+    device_ownership = db.Column(db.String(50))
+    active_duty_military_parent = db.Column(db.Boolean)
+    veteran_status_parent = db.Column(db.Boolean)
+    homeless_status = db.Column(db.Boolean)
+    migrant_education_program = db.Column(db.Boolean)
+    foster_care_involvement = db.Column(db.Boolean)
+    tribe_membership = db.Column(db.Boolean)
+    religious_affiliation = db.Column(db.String(50))
+    church_affiliation = db.Column(db.String(50))
+    school_assigned_id = db.Column(db.String(50))
+    state_assigned_id = db.Column(db.String(50))
+    national_id = db.Column(db.String(50))
+    user = db.relationship('User', backref=db.backref('student_profile', uselist=False))
+
+class ParentProfile(db.Model):
+    __tablename__ = 'parent_profiles'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    address = db.Column(db.String(255))
+    phone_number = db.Column(db.String(20))
+    user = db.relationship('User', backref=db.backref('parent_profile', uselist=False))
+
+class EmergencyContact(db.Model):
+    __tablename__ = 'emergency_contacts'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    name = db.Column(db.String(255))
+    relationship = db.Column(db.String(255))
+    phone_number = db.Column(db.String(20))
+    email = db.Column(db.String(120))
+    user = db.relationship('User', backref=db.backref('emergency_contacts', lazy=True))
+
+class Sibling(db.Model):
+    __tablename__ = 'siblings'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    name = db.Column(db.String(255))
+    grade = db.Column(db.String(10))
+    school = db.Column(db.String(255))
+    user = db.relationship('User', backref=db.backref('siblings', lazy=True))
+
+# Lookup tables for normalized data
+class Gender(db.Model):
+    __tablename__ = 'genders'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+
+class RacialCategory(db.Model):
+    __tablename__ = 'racial_categories'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+
+class EthnicBackground(db.Model):
+    __tablename__ = 'ethnic_backgrounds'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+
+class Country(db.Model):
+    __tablename__ = 'countries'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)

@@ -1,0 +1,58 @@
+﻿First name
+Middle name
+Last Name
+Preferred name
+Date of birth
+Place of birth
+Gender - drop down box - male / female
+Gender identity (if different from assigned gender) - Pick list
+Pronouns - Pick list
+Home address
+Phone number(s)
+Email address
+Emergency contact information (May need multiple)
+Parent/guardian names (up to 4 parents / guardians)
+Parent/guardian contact information (to match teh above)
+Siblings in the school system
+Family structure (e.g., two-parent, single-parent, foster care) Pick list
+Custodial arrangements (if applicable)
+Racial categories (as per federal guidelines) Pick List
+Ethnic background Pick List
+Hispanic/Latino origin (yes/no)
+Primary language spoken at home
+Other languages spoken
+English language proficiency level
+ESL/ELL status
+Citizenship status
+Country of origin (if not US) Pick Lis
+Immigration status (if applicable)
+Date of entry into the US (if applicable)
+Free/reduced lunch eligibility
+Family income bracket (for statistical purposes)
+Parent/guardian education level
+Parent/guardian occupation
+Current grade level - Pick List
+Previous schools attended
+Date of entry into the school system
+Projected graduation year
+IEP (Individualized Education Program) status
+504 plan status
+Gifted and talented program participation
+transportation to/from school
+Bus route number (if applicable)
+Sports team participation
+Club memberships
+After-school program enrollment
+Internet access at home
+Device ownership/access (computer, tablet, smartphone)
+Active duty military parent/guardian
+Veteran status of parent/guardian
+Homeless status
+Participation in migrant education program
+Involvement with foster care system
+Membership in federally recognized tribe (if applicable)
+Religious Affiliation:
+Church affiliation
+School-assigned ID
+State-assigned ID
+National ID (such as Social Security Number, if used)
