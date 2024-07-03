@@ -5,3 +5,5 @@ Fix user profile
 add pagination to user list
 add filter, by type of user to user list
 add search by FN, LN, ID etc to user list
+create and enable a color themes feature
+

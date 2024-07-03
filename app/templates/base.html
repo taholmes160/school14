@@ -18,7 +18,7 @@
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 1rem;
+            padding: .25rem;
             text-align: center;
         }
         main {
@@ -28,7 +28,7 @@
             background-color: #4CAF50;
             color: white;
             text-align: center;
-            padding: 1rem;
+            padding: .05rem;
             position: fixed;
             width: 100%;
             bottom: 0;
@@ -46,7 +46,7 @@
             text-align: left;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #c9cac9;
         }
         th {
             background-color: #4CAF50;
@@ -63,17 +63,13 @@
 </head>
 <body>
     <header>
-        <h1>School Management App</h1>
-        <nav>
-            <a href="{{ url_for('main.home') }}">Home</a> | 
-            <a href="{{ url_for('main.users') }}">Users</a>
-        </nav>
+        <h1>Spirit School</h1>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; 2023 School Management App</p>
+        <p>&copy; 2024 Spirit Systems School ManagemenT</p>
     </footer>
 </body>
 </html>
