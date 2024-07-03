@@ -1,10 +1,9 @@
-# app/routes.py
-
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models import User, Role, StudentProfile, ParentProfile, TeacherProfile, EmergencyContact, Sibling
 from app.forms import LoginForm, UserForm, StudentProfileForm, ParentProfileForm, TeacherProfileForm
+from flask_paginate import Pagination, get_page_parameter
 
 main = Blueprint('main', __name__)
 
@@ -16,12 +15,15 @@ def home():
 @login_required
 def users():
     search = request.args.get('search')
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 10
     if search:
-        users = User.query.filter(User.last_name.contains(search)).all()
+        users_query = User.query.filter(User.last_name.contains(search))
     else:
-        users = User.query.all()
-    return render_template('users.html', users=users, search=search)
-
+        users_query = User.query
+    users = users_query.paginate(page=page, per_page=per_page, error_out=False)
+    pagination = Pagination(page=page, total=users.total, search=search, record_name='users')
+    return render_template('users.html', users=users.items, pagination=pagination, search=search)
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required

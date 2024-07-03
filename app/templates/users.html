@@ -9,7 +9,7 @@ Users - School Management App
 {% block content %}
 <h2>Users</h2>
 <form method="GET" action="{{ url_for('main.users') }}">
-    <input type="text" name="search" value="{{ search }}" placeholder="Search users...">
+    <input type="text" name="search" value="{{ search }}" placeholder="Search by last name...">
     <button type="submit">Search</button>
 </form>
 <a href="{{ url_for('main.new_user') }}">Create New User</a>
@@ -45,4 +45,5 @@ Users - School Management App
         {% endfor %}
     </tbody>
 </table>
+{{ pagination.links }}
 {% endblock %}
