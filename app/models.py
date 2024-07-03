@@ -77,8 +77,6 @@ class StudentProfile(db.Model):
     pronouns = db.Column(db.String(50))
     phone_number = db.Column(db.String(20))
     email = db.Column(db.String(120))
-    emergency_contacts = db.relationship('EmergencyContact', backref='student', lazy=True)
-    siblings = db.relationship('Sibling', backref='student', lazy=True)
     family_structure = db.Column(db.String(50))
     custodial_arrangements = db.Column(db.Text)
     hispanic_latino_origin = db.Column(db.Boolean)
@@ -127,6 +125,15 @@ class ParentProfile(db.Model):
     address = db.Column(db.String(255))
     phone_number = db.Column(db.String(20))
     user = db.relationship('User', backref=db.backref('parent_profile', uselist=False))
+
+class TeacherProfile(db.Model):
+    __tablename__ = 'teacher_profiles'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    subject = db.Column(db.String(255))
+    address = db.Column(db.String(255))
+    phone_number = db.Column(db.String(20))
+    user = db.relationship('User', backref=db.backref('teacher_profile', uselist=False))
 
 class EmergencyContact(db.Model):
     __tablename__ = 'emergency_contacts'
