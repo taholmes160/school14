@@ -12,11 +12,16 @@ main = Blueprint('main', __name__)
 def home():
     return render_template('home.html')
 
-@main.route('/users')
+@main.route('/users', methods=['GET', 'POST'])
 @login_required
 def users():
-    users = User.query.all()
-    return render_template('users.html', users=users)
+    search = request.args.get('search')
+    if search:
+        users = User.query.filter(User.last_name.contains(search)).all()
+    else:
+        users = User.query.all()
+    return render_template('users.html', users=users, search=search)
+
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required

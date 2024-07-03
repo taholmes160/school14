@@ -1,4 +1,7 @@
 Fix user profile
+    demogrphics needs individual fields for all items
+    Discipline should only be visible to certain profiles, and needs a list and details
+    put student name in place of ID number for profile title
 add pagination to user list
 add filter, by type of user to user list
 add search by FN, LN, ID etc to user list
