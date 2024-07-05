@@ -104,3 +104,11 @@ class TeacherProfileForm(FlaskForm):
     address = StringField('Address')
     phone_number = StringField('Phone Number')
     submit = SubmitField('Submit')
+
+class UserTypeForm(FlaskForm):
+    role_id = SelectField('Role', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Next')
+
+    def __init__(self, *args, **kwargs):
+        super(UserTypeForm, self).__init__(*args, **kwargs)
+        self.role_id.choices = [(role.id, role.name) for role in Role.query.order_by(Role.name).all()]

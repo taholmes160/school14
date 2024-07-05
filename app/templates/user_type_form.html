@@ -1,0 +1,24 @@
+<!-- app/templates/user_type_form.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+{{ title }} - School Management App
+{% endblock %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.role_id.label }}<br>
+        {{ form.role_id() }}<br>
+        {% for error in form.role_id.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+{% endblock %}

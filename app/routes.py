@@ -2,8 +2,9 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models import User, Role, StudentProfile, ParentProfile, TeacherProfile, EmergencyContact, Sibling
-from app.forms import LoginForm, UserForm, StudentProfileForm, ParentProfileForm, TeacherProfileForm
+from app.forms import LoginForm, UserForm, StudentProfileForm, ParentProfileForm, TeacherProfileForm, UserTypeForm
 from flask_paginate import Pagination, get_page_parameter
+from datetime import datetime
 
 main = Blueprint('main', __name__)
 
@@ -25,17 +26,53 @@ def users():
     pagination = Pagination(page=page, total=users.total, search=search, record_name='users')
     return render_template('users.html', users=users.items, pagination=pagination, search=search)
 
+
+
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
 def new_user():
+    form = UserTypeForm()
+    if form.validate_on_submit():
+        role_id = form.role_id.data
+        return redirect(url_for('main.new_user_details', role_id=role_id))
+    return render_template('user_type_form.html', form=form, title='Select User Type')
+
+@main.route('/user/new/details/<int:role_id>', methods=['GET', 'POST'])
+@login_required
+def new_user_details(role_id):
     form = UserForm()
+    
+    # Generate ID number
+    current_year = datetime.now().year
+    last_user = User.query.order_by(User.id.desc()).first()
+    if last_user and str(last_user.id).startswith(str(current_year)):
+        last_id_number = int(str(last_user.id)[4:])
+        new_id_number = f"{current_year}{last_id_number + 1:04d}"
+    else:
+        new_id_number = f"{current_year}0001"
+    
+    # Generate username and email
+    role_abbreviation = {
+        'Student': 'stu',
+        'Teacher': 'tea',
+        'Parent': 'par',
+        'Staff': 'sta',
+        'Office': 'off'
+    }
+    role_name = Role.query.get(role_id).name
+    role_abbr = role_abbreviation.get(role_name, 'usr')
+    new_username = f"{role_abbr}{new_id_number}"
+    school_domain = "schooldomain.com"
+    new_email = f"{new_username}@{school_domain}"
+    
     if form.validate_on_submit():
         user = User(
-            username=form.username.data,
-            email=form.email.data,
+            id=new_id_number,
+            username=new_username,
+            email=new_email,
             first_name=form.first_name.data,
             last_name=form.last_name.data,
-            role_id=form.role_id.data,
+            role_id=role_id,
             is_active=form.is_active.data,
             is_verified=form.is_verified.data,
             is_admin=form.is_admin.data
@@ -45,7 +82,14 @@ def new_user():
         db.session.commit()
         flash('User created successfully.')
         return redirect(url_for('main.users'))
+    
+    # Pre-fill the form with generated values
+    form.username.data = new_username
+    form.email.data = new_email
+    
     return render_template('user_form.html', form=form, title='New User')
+
+    
 
 @main.route('/user/<int:user_id>/edit', methods=['GET', 'POST'])
 @login_required
