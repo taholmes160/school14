@@ -1,10 +1,10 @@
+from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models import User, Role, StudentProfile, ParentProfile, TeacherProfile, EmergencyContact, Sibling
-from app.forms import LoginForm, UserForm, StudentProfileForm, ParentProfileForm, TeacherProfileForm, UserTypeForm
+from app.forms import LoginForm, UserForm, UserTypeForm
 from flask_paginate import Pagination, get_page_parameter
-from datetime import datetime
 
 main = Blueprint('main', __name__)
 
@@ -26,8 +26,6 @@ def users():
     pagination = Pagination(page=page, total=users.total, search=search, record_name='users')
     return render_template('users.html', users=users.items, pagination=pagination, search=search)
 
-
-
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
 def new_user():
@@ -35,6 +33,9 @@ def new_user():
     if form.validate_on_submit():
         role_id = form.role_id.data
         return redirect(url_for('main.new_user_details', role_id=role_id))
+    else:
+        print("Form validation failed in new_user")
+        print(form.errors)
     return render_template('user_type_form.html', form=form, title='Select User Type')
 
 @main.route('/user/new/details/<int:role_id>', methods=['GET', 'POST'])
@@ -66,6 +67,7 @@ def new_user_details(role_id):
     new_email = f"{new_username}@{school_domain}"
     
     if form.validate_on_submit():
+        print("Form validated successfully in new_user_details")
         user = User(
             id=new_id_number,
             username=new_username,
@@ -82,14 +84,17 @@ def new_user_details(role_id):
         db.session.commit()
         flash('User created successfully.')
         return redirect(url_for('main.users'))
+    else:
+        print("Form validation failed in new_user_details")
+        print(form.errors)
     
     # Pre-fill the form with generated values
     form.username.data = new_username
     form.email.data = new_email
+    form.role_id.data = role_id  # Set the role_id field
     
     return render_template('user_form.html', form=form, title='New User')
 
-    
 
 @main.route('/user/<int:user_id>/edit', methods=['GET', 'POST'])
 @login_required
