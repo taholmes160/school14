@@ -2,6 +2,8 @@ Fix user profile
     demogrphics needs individual fields for all items
     Discipline should only be visible to certain profiles, and needs a list and details
     put student name in place of ID number for profile title
+    
+change initial login routine so that user has to change password on first login
 
 add filter, by type of user to user list
 
