@@ -1,10 +1,11 @@
+# app/routes.py
+
 from datetime import datetime
-from flask import Blueprint, render_template, redirect, url_for, flash, request
-from flask_login import login_user, logout_user, login_required, current_user
+from flask import render_template, flash, redirect, url_for, request, Blueprint
+from flask_login import current_user, login_user, logout_user, login_required
 from app import db
-from app.models import User, Role, StudentProfile, ParentProfile, TeacherProfile, EmergencyContact, Sibling
+from app.models import User, Role
 from app.forms import LoginForm, UserForm, UserTypeForm
-from flask_paginate import Pagination, get_page_parameter
 
 main = Blueprint('main', __name__)
 
@@ -12,20 +13,37 @@ main = Blueprint('main', __name__)
 def home():
     return render_template('home.html')
 
-@main.route('/users', methods=['GET', 'POST'])
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('main.login'))
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('main.users'))
+    return render_template('login.html', form=form)
+
+@main.route('/users')
 @login_required
 def users():
-    search = request.args.get('search')
-    page = request.args.get(get_page_parameter(), type=int, default=1)
+    users_query = User.query.order_by(User.id.asc())
+    page = request.args.get('page', 1, type=int)
     per_page = 10
+    search = request.args.get('search', '')
     if search:
-        users_query = User.query.filter(User.last_name.contains(search))
-    else:
-        users_query = User.query
+        users_query = users_query.filter(
+            (User.username.contains(search)) |
+            (User.email.contains(search)) |
+            (User.first_name.contains(search)) |
+            (User.last_name.contains(search))
+        )
     users = users_query.paginate(page=page, per_page=per_page, error_out=False)
-    pagination = Pagination(page=page, total=users.total, search=search, record_name='users')
-    return render_template('users.html', users=users.items, pagination=pagination, search=search)
-    
+    return render_template('users.html', users=users.items, search=search)
+
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
 def new_user():
@@ -74,6 +92,10 @@ def new_user_details(role_id):
         form.role_id.data = role_id  # Set the role_id field explicitly
         if form.validate_on_submit():
             print("Form validated successfully in new_user_details")
+            
+            # Set a default password
+            default_password = 'password123'
+            
             user = User(
                 id=new_id_number,
                 username=new_username,
@@ -85,7 +107,7 @@ def new_user_details(role_id):
                 is_verified=form.is_verified.data,
                 is_admin=form.is_admin.data
             )
-            user.set_password(form.password.data)
+            user.set_password(default_password)
             db.session.add(user)
             db.session.commit()
             flash('User created successfully.')
@@ -99,7 +121,7 @@ def new_user_details(role_id):
     form.email.data = new_email
     form.role_id.data = role_id  # Set the role_id field
     print(f"Form role_id: {form.role_id.data}")  # Debug statement
-
+    
     return render_template('user_form.html', form=form, title='New User')
 
 @main.route('/user/<int:user_id>/edit', methods=['GET', 'POST'])
@@ -116,11 +138,10 @@ def edit_user(user_id):
         user.is_active = form.is_active.data
         user.is_verified = form.is_verified.data
         user.is_admin = form.is_admin.data
-        if form.password.data:
-            user.set_password(form.password.data)
         db.session.commit()
         flash('User updated successfully.')
         return redirect(url_for('main.users'))
+    form.role_id.data = user.role_id
     return render_template('user_form.html', form=form, title='Edit User')
 
 @main.route('/user/<int:user_id>/delete', methods=['POST'])
@@ -132,21 +153,7 @@ def delete_user(user_id):
     flash('User deleted successfully.')
     return redirect(url_for('main.users'))
 
-@main.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and user.check_password(form.password.data):
-            login_user(user)
-            next_page = request.args.get('next')
-            return redirect(next_page or url_for('main.users'))
-        else:
-            flash('Invalid username or password')
-    return render_template('login.html', form=form)
-
 @main.route('/logout')
-@login_required
 def logout():
     logout_user()
     return redirect(url_for('main.home'))
@@ -154,9 +161,3 @@ def logout():
 @main.route('/status')
 def status():
     return f"Authenticated: {current_user.is_authenticated}, User: {current_user}"
-
-@main.route('/user/<int:user_id>/profile')
-@login_required
-def user_profile(user_id):
-    user = User.query.get_or_404(user_id)
-    return render_template('user_profile.html', user=user)
