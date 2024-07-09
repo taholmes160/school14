@@ -1,7 +1,7 @@
 # app/forms.py
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, IntegerField, SelectField, SubmitField, TextAreaField, DateField
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from app.models import Role
 
@@ -26,8 +26,7 @@ class UserForm(FlaskForm):
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
-        self.role_id.choices = [(role.id, role.name) for role in Role.query.order_by(Role.name).all()]
-        self.role_id.validators = []  # Remove validators to avoid validation errors
+        self.role_id.choices = [(role.id, role.name) for role in Role.query.all()]
 
 class UserTypeForm(FlaskForm):
     role_id = SelectField('Role', coerce=int, validators=[DataRequired()])
