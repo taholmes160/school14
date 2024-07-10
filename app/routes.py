@@ -94,7 +94,7 @@ def new_user_details(role_id):
             print("Form validated successfully in new_user_details")
             
             # Set a default password
-            default_password = 'password123'
+            default_password = 'school1234'
             
             user = User(
                 id=new_id_number,
