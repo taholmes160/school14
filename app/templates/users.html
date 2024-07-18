@@ -48,6 +48,20 @@ Users - School Management App
     </table>
 </div>
 <div class="pagination-container">
-    {{ pagination.links }}
+    <ul class="pagination">
+        {% if pagination.has_prev %}
+        <li><a href="{{ url_for('main.users', page=pagination.prev_num, per_page=per_page, search=search) }}">&laquo;</a></li>
+        {% endif %}
+        {% for page_num in pagination.iter_pages() %}
+        {% if page_num %}
+        <li class="{% if page_num == pagination.page %}active{% endif %}"><a href="{{ url_for('main.users', page=page_num, per_page=per_page, search=search) }}">{{ page_num }}</a></li>
+        {% else %}
+        <li class="disabled"><span>&hellip;</span></li>
+        {% endif %}
+        {% endfor %}
+        {% if pagination.has_next %}
+        <li><a href="{{ url_for('main.users', page=pagination.next_num, per_page=per_page, search=search) }}">&raquo;</a></li>
+        {% endif %}
+    </ul>
 </div>
 {% endblock %}
