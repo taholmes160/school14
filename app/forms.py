@@ -35,3 +35,10 @@ class UserTypeForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super(UserTypeForm, self).__init__(*args, **kwargs)
         self.role_id.choices = [(role.id, role.name) for role in Role.query.order_by(Role.name).all()]
+
+class UserProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=80)])
+    email = StringField('Email', validators=[DataRequired(), Length(max=120)])
+    first_name = StringField('First Name', validators=[Length(max=80)])
+    last_name = StringField('Last Name', validators=[Length(max=80)])
+    submit = SubmitField('Update Profile')

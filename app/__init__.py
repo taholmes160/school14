@@ -17,7 +17,7 @@ def create_app():
 
     # Initialize Flask-Login
     login_manager.init_app(app)
-    login_manager.login_view = 'login'
+    login_manager.login_view = 'main.login'
 
     # Create and register the main blueprint
     from .routes import main as main_blueprint

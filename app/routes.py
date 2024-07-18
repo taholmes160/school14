@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, url_for, request, Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 from app.models import User, Role
-from app.forms import LoginForm, UserForm, UserTypeForm
+from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm
 
 main = Blueprint('main', __name__)
 
@@ -32,7 +32,8 @@ def login():
 def users():
     users_query = User.query.order_by(User.id.asc())
     page = request.args.get('page', 1, type=int)
-    per_page = 10
+    per_page = 13
+    
     search = request.args.get('search', '')
     if search:
         users_query = users_query.filter(
@@ -42,7 +43,8 @@ def users():
             (User.last_name.contains(search))
         )
     users = users_query.paginate(page=page, per_page=per_page, error_out=False)
-    return render_template('users.html', users=users.items, search=search)
+    return render_template('users.html', users=users.items, pagination=users, search=search)
+
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
@@ -161,3 +163,15 @@ def logout():
 @main.route('/status')
 def status():
     return f"Authenticated: {current_user.is_authenticated}, User: {current_user}"
+
+@main.route('/user/<int:user_id>/profile', methods=['GET', 'POST'])
+@login_required
+def user_profile(user_id):
+    user = User.query.get_or_404(user_id)
+    form = UserProfileForm(obj=user)
+    if form.validate_on_submit():
+        form.populate_obj(user)
+        db.session.commit()
+        flash('Profile updated successfully.')
+        return redirect(url_for('main.user_profile', user_id=user.id))
+    return render_template('user_profile.html', user=user, form=form)
