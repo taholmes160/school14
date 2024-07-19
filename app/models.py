@@ -45,6 +45,11 @@ class User(UserMixin, db.Model):
 
     def get_id(self):
         return str(self.id)
+    
+    def has_permission(self, permission):
+        if self.role and self.role.permissions:
+            return permission in self.role.permissions.split(',')
+        return False
 
     @property
     def is_authenticated(self):

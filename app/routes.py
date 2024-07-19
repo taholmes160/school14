@@ -4,7 +4,7 @@ from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request, Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
-from app.models import User, Role
+from app.models import User, Role, StudentProfile
 from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm
 
 main = Blueprint('main', __name__)
@@ -44,7 +44,6 @@ def users():
         )
     users = users_query.paginate(page=page, per_page=per_page, error_out=False)
     return render_template('users.html', users=users.items, pagination=users, search=search)
-
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
@@ -175,3 +174,33 @@ def user_profile(user_id):
         flash('Profile updated successfully.')
         return redirect(url_for('main.user_profile', user_id=user.id))
     return render_template('user_profile.html', user=user, form=form)
+    
+@main.route('/admin/users', methods=['GET', 'POST'])
+@login_required
+def admin_users():
+    form = UserForm()
+    role_id = request.args.get('role')
+    grade = request.args.get('grade')
+    
+    users_query = User.query
+    
+    if role_id:
+        users_query = users_query.filter_by(role_id=role_id)
+    
+    if grade:
+        users_query = users_query.join(StudentProfile).filter(StudentProfile.grade == grade)
+    
+    users = users_query.all()
+    roles = Role.query.all()
+    
+    return render_template('admin_users.html', form=form, users=users, roles=roles)
+    
+
+@main.route('/admin/users/batch_update', methods=['POST'])
+@login_required
+def batch_update_users():
+    user_ids = request.form.getlist('user_ids')
+    # Process the batch update (we'll implement this in the next steps)
+    # For now, just print the selected user IDs
+    print("Selected user IDs:", user_ids)
+    return redirect(url_for('main.admin_users'))
