@@ -1,7 +1,7 @@
 # app/forms.py
-
+    
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from app.models import Role
 
@@ -41,4 +41,12 @@ class UserProfileForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Length(max=120)])
     first_name = StringField('First Name', validators=[Length(max=80)])
     last_name = StringField('Last Name', validators=[Length(max=80)])
+    age = IntegerField('Age')
+    grade = StringField('Grade', validators=[Length(max=80)])
+    address = StringField('Address', validators=[Length(max=120)])
+    parent_guardian = StringField('Parent/Guardian', validators=[Length(max=120)])
+    demographic_info = TextAreaField('Demographic Info')
+    discipline_records = TextAreaField('Discipline Records')
+    subject = StringField('Subject', validators=[Length(max=80)])
+    phone_number = StringField('Phone Number', validators=[Length(max=20)])
     submit = SubmitField('Update Profile')

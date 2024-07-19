@@ -13,3 +13,4 @@ when filling out new student form, need to be able to have default password fill
 
 need setting page for DBA where can set things like theme, school logo graphic, default pass, school domain name
 
+set it up so you can query the users table and then batch modify the erturned setting
