@@ -1,0 +1,221 @@
+<!-- app/templates/batch_update.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+Batch Update Users
+{% endblock %}
+
+{% block content %}
+<h2>Batch Update Users</h2>
+<form method="POST" action="{{ url_for('main.batch_update_users') }}">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.age.label }}<br>
+        {{ form.age(size=32) }}<br>
+        {% for error in form.age.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.grade.label }}<br>
+        {{ form.grade(size=32) }}<br>
+        {% for error in form.grade.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.gender_id.label }}<br>
+        {{ form.gender_id(size=32) }}<br>
+        {% for error in form.gender_id.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.racial_category_id.label }}<br>
+        {{ form.racial_category_id(size=32) }}<br>
+        {% for error in form.racial_category_id.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.ethnic_background_id.label }}<br>
+        {{ form.ethnic_background_id(size=32) }}<br>
+        {% for error in form.ethnic_background_id.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.country_id.label }}<br>
+        {{ form.country_id(size=32) }}<br>
+        {% for error in form.country_id.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.primary_language.label }}<br>
+        {{ form.primary_language(size=32) }}<br>
+        {% for error in form.primary_language.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.other_languages.label }}<br>
+        {{ form.other_languages(size=32) }}<br>
+        {% for error in form.other_languages.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.citizenship_status.label }}<br>
+        {{ form.citizenship_status(size=32) }}<br>
+        {% for error in form.citizenship_status.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.free_reduced_lunch_eligibility.label }}<br>
+        {{ form.free_reduced_lunch_eligibility() }}<br>
+        {% for error in form.free_reduced_lunch_eligibility.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.projected_graduation_year.label }}<br>
+        {{ form.projected_graduation_year() }}<br>
+        {% for error in form.projected_graduation_year.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.iep_status.label }}<br>
+        {{ form.iep_status() }}<br>
+        {% for error in form.iep_status.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.plan_504_status.label }}<br>
+        {{ form.plan_504_status() }}<br>
+        {% for error in form.plan_504_status.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.gifted_talented_program.label }}<br>
+        {{ form.gifted_talented_program() }}<br>
+        {% for error in form.gifted_talented_program.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.transportation.label }}<br>
+        {{ form.transportation(size=32) }}<br>
+        {% for error in form.transportation.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.bus_route_number.label }}<br>
+        {{ form.bus_route_number(size=32) }}<br>
+        {% for error in form.bus_route_number.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.sports_team_participation.label }}<br>
+        {{ form.sports_team_participation(rows=3, cols=40) }}<br>
+        {% for error in form.sports_team_participation.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.club_memberships.label }}<br>
+        {{ form.club_memberships(rows=3, cols=40) }}<br>
+        {% for error in form.club_memberships.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.after_school_program.label }}<br>
+        {{ form.after_school_program(rows=3, cols=40) }}<br>
+        {% for error in form.after_school_program.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.internet_access.label }}<br>
+        {{ form.internet_access() }}<br>
+        {% for error in form.internet_access.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.device_ownership.label }}<br>
+        {{ form.device_ownership(size=32) }}<br>
+        {% for error in form.device_ownership.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.active_duty_military_parent.label }}<br>
+        {{ form.active_duty_military_parent() }}<br>
+        {% for error in form.active_duty_military_parent.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.veteran_status_parent.label }}<br>
+        {{ form.veteran_status_parent() }}<br>
+        {% for error in form.veteran_status_parent.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.homeless_status.label }}<br>
+        {{ form.homeless_status() }}<br>
+        {% for error in form.homeless_status.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.migrant_education_program.label }}<br>
+        {{ form.migrant_education_program() }}<br>
+        {% for error in form.migrant_education_program.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.foster_care_involvement.label }}<br>
+        {{ form.foster_care_involvement() }}<br>
+        {% for error in form.foster_care_involvement.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.tribe_membership.label }}<br>
+        {{ form.tribe_membership() }}<br>
+        {% for error in form.tribe_membership.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.religious_affiliation.label }}<br>
+        {{ form.religious_affiliation(size=32) }}<br>
+        {% for error in form.religious_affiliation.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.church_affiliation.label }}<br>
+        {{ form.church_affiliation(size=32) }}<br>
+        {% for error in form.church_affiliation.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
+    <input type="hidden" name="user_ids" value="{{ user_ids|join(',') }}">
+</form>
+{% endblock %}

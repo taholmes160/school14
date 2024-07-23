@@ -5,7 +5,8 @@ from flask import render_template, flash, redirect, url_for, request, Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 from app.models import User, Role, StudentProfile
-from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm
+from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm
+
 
 main = Blueprint('main', __name__)
 
@@ -194,13 +195,88 @@ def admin_users():
     roles = Role.query.all()
     
     return render_template('admin_users.html', form=form, users=users, roles=roles)
-    
 
-@main.route('/admin/users/batch_update', methods=['POST'])
+@main.route('/admin/users/batch_update', methods=['GET', 'POST'])
 @login_required
 def batch_update_users():
-    user_ids = request.form.getlist('user_ids')
-    # Process the batch update (we'll implement this in the next steps)
-    # For now, just print the selected user IDs
-    print("Selected user IDs:", user_ids)
-    return redirect(url_for('main.admin_users'))
+    form = BatchUpdateForm()
+    
+    if request.method == 'POST':
+        user_ids = request.form.getlist('user_ids')
+        print("POST request received")
+        print("Selected user IDs:", user_ids)
+        if form.validate_on_submit():
+            print("Form validated successfully")
+            users = User.query.filter(User.id.in_(user_ids)).all()
+            for user in users:
+                if user.student_profile:
+                    if form.age.data is not None:
+                        user.student_profile.age = form.age.data
+                    if form.grade.data:
+                        user.student_profile.grade = form.grade.data
+                    if form.gender_id.data is not None:
+                        user.student_profile.gender_id = form.gender_id.data
+                    if form.racial_category_id.data is not None:
+                        user.student_profile.racial_category_id = form.racial_category_id.data
+                    if form.ethnic_background_id.data is not None:
+                        user.student_profile.ethnic_background_id = form.ethnic_background_id.data
+                    if form.country_id.data is not None:
+                        user.student_profile.country_id = form.country_id.data
+                    if form.primary_language.data:
+                        user.student_profile.primary_language = form.primary_language.data
+                    if form.other_languages.data:
+                        user.student_profile.other_languages = form.other_languages.data
+                    if form.citizenship_status.data:
+                        user.student_profile.citizenship_status = form.citizenship_status.data
+                    if form.free_reduced_lunch_eligibility.data is not None:
+                        user.student_profile.free_reduced_lunch_eligibility = form.free_reduced_lunch_eligibility.data
+                    if form.projected_graduation_year.data:
+                        user.student_profile.projected_graduation_year = form.projected_graduation_year.data
+                    if form.iep_status.data is not None:
+                        user.student_profile.iep_status = form.iep_status.data
+                    if form.plan_504_status.data is not None:
+                        user.student_profile.plan_504_status = form.plan_504_status.data
+                    if form.gifted_talented_program.data is not None:
+                        user.student_profile.gifted_talented_program = form.gifted_talented_program.data
+                    if form.transportation.data:
+                        user.student_profile.transportation = form.transportation.data
+                    if form.bus_route_number.data:
+                        user.student_profile.bus_route_number = form.bus_route_number.data
+                    if form.sports_team_participation.data:
+                        user.student_profile.sports_team_participation = form.sports_team_participation.data
+                    if form.club_memberships.data:
+                        user.student_profile.club_memberships = form.club_memberships.data
+                    if form.after_school_program.data:
+                        user.student_profile.after_school_program = form.after_school_program.data
+                    if form.internet_access.data is not None:
+                        user.student_profile.internet_access = form.internet_access.data
+                    if form.device_ownership.data:
+                        user.student_profile.device_ownership = form.device_ownership.data
+                    if form.active_duty_military_parent.data is not None:
+                        user.student_profile.active_duty_military_parent = form.active_duty_military_parent.data
+                    if form.veteran_status_parent.data is not None:
+                        user.student_profile.veteran_status_parent = form.veteran_status_parent.data
+                    if form.homeless_status.data is not None:
+                        user.student_profile.homeless_status = form.homeless_status.data
+                    if form.migrant_education_program.data is not None:
+                        user.student_profile.migrant_education_program = form.migrant_education_program.data
+                    if form.foster_care_involvement.data is not None:
+                        user.student_profile.foster_care_involvement = form.foster_care_involvement.data
+                    if form.tribe_membership.data is not None:
+                        user.student_profile.tribe_membership = form.tribe_membership.data
+                    if form.religious_affiliation.data:
+                        user.student_profile.religious_affiliation = form.religious_affiliation.data
+                    if form.church_affiliation.data:
+                        user.student_profile.church_affiliation = form.church_affiliation.data
+            db.session.commit()
+            flash('Batch update successful.')
+            return redirect(url_for('main.admin_users'))
+        else:
+            print("Form validation failed")
+            print(form.errors)
+    else:
+        user_ids = request.args.get('user_ids', '').split(',')
+        print("GET request received")
+        print("Selected user IDs:", user_ids)
+    
+    return render_template('batch_update.html', form=form, user_ids=user_ids)
