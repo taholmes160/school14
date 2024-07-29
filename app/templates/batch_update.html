@@ -212,10 +212,9 @@ Batch Update Users
         {% for error in form.church_affiliation.errors %}
         <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
-    </div>
-    <div>
-        <button type="submit">Update</button>
-    </div>
-    <input type="hidden" name="user_ids" value="{{ user_ids|join(',') }}">
-</form>
-{% endblock %}
+        <div>
+            <button type="submit">Update</button>
+        </div>
+        <input type="hidden" name="user_ids" value="{{ user_ids|join(',') }}">
+    </form>
+    {% endblock %}

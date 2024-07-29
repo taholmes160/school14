@@ -196,6 +196,7 @@ def admin_users():
     
     return render_template('admin_users.html', form=form, users=users, roles=roles)
 
+
 @main.route('/admin/users/batch_update', methods=['GET', 'POST'])
 @login_required
 def batch_update_users():
@@ -268,6 +269,7 @@ def batch_update_users():
                         user.student_profile.religious_affiliation = form.religious_affiliation.data
                     if form.church_affiliation.data:
                         user.student_profile.church_affiliation = form.church_affiliation.data
+            
             db.session.commit()
             flash('Batch update successful.')
             return redirect(url_for('main.admin_users'))
