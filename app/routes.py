@@ -5,12 +5,7 @@ from flask import render_template, flash, redirect, url_for, request, Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 from app.models import User, Role
-from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
-
-
+from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm  # Add BatchUpdateForm here
 
 main = Blueprint('main', __name__)
 
