@@ -95,3 +95,41 @@ input[type="checkbox"] {
     padding: 0; /* Remove default padding */
     vertical-align: middle; /* Align checkbox vertically in the middle */
 }
+.tab-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-headers {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tab-headers li {
+    padding: 10px 20px;
+    background-color: #f4f4f9;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.tab-headers li.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tab-content-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
