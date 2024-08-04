@@ -1,0 +1,97 @@
+/* static/css/styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+}
+main {
+    padding: 1rem;
+}
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.table-container {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.form-grid div {
+    display: flex;
+    flex-direction: column;
+}
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.pagination-container {
+    text-align: center;
+    margin-top: 1rem;
+}
+.pagination-container .pagination {
+    display: inline-block;
+}
+.pagination-container .pagination li {
+    display: inline;
+    margin: 0 5px;
+}
+.pagination-container .pagination li a {
+    color: #4CAF50;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.pagination-container .pagination li a:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.pagination-container .pagination .active a {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+input[type="checkbox"] {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    vertical-align: middle; /* Align checkbox vertically in the middle */
+}

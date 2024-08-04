@@ -1,124 +1,13 @@
 <!-- app/templates/base.html -->
 
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My App{% endblock %}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.5rem;
-            text-align: center;
-        }
-        main {
-            padding: 1rem;
-        }
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 0.5rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        .table-container {
-            overflow-x: auto;
-        }
-        table {
-            width: 95%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            table-layout: fixed; /* Ensures the table respects the width settings */
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 0.5rem;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-        /* Adjust the width of specific columns */
-        th:nth-child(1), td:nth-child(1) {
-            width: 3%;
-        }
-        th:nth-child(2), td:nth-child(2) {
-            width: 7%;
-        }
-        th:nth-child(3), td:nth-child(3) {
-            width: 10%;
-        }
-        th:nth-child(4), td:nth-child(4) {
-            width: 15%;
-        }
-        th:nth-child(5), td:nth-child(5) {
-            width: 10%;
-        }
-        th:nth-child(6), td:nth-child(6) {
-            width: 10%;
-        }
-        th:nth-child(7), td:nth-child(7) {
-            width: 10%;
-        }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .pagination-container {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        .pagination-container .pagination {
-            display: inline-block;
-        }
-        .pagination-container .pagination li {
-            display: inline;
-            margin: 0 5px;
-        }
-        .pagination-container .pagination li a {
-            color: #4CAF50;
-            text-decoration: none;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .pagination-container .pagination li a:hover {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .pagination-container .pagination .active a {
-            background-color: #4CAF50;
-            color: white;
-            border: 1px solid #4CAF50;
-        }
-        input[type="checkbox"] {
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
-            vertical-align: middle; /* Align checkbox vertically in the middle */
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <header>
@@ -130,5 +19,6 @@
     <footer>
         <p>&copy; 2024 Spirit Systems School Management</p>
     </footer>
+    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
 </body>
 </html>
