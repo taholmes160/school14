@@ -95,6 +95,9 @@ input[type="checkbox"] {
     padding: 0; /* Remove default padding */
     vertical-align: middle; /* Align checkbox vertically in the middle */
 }
+/* static/css/styles.css */
+
+/* Add or update these styles */
 .tab-container {
     width: 100%;
     display: flex;
@@ -113,11 +116,12 @@ input[type="checkbox"] {
     background-color: #f4f4f9;
     border: 1px solid #ddd;
     cursor: pointer;
+    color: #333; /* Default text color */
 }
 
 .tab-headers li.active {
     background-color: #4CAF50;
-    color: white;
+    color: white; /* Text color when tab is active */
 }
 
 .tab-content-container {
