@@ -4,8 +4,8 @@ from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request, Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
-from app.models import User, Role
-from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm  # Add BatchUpdateForm here
+from app.models import User, Role, StudentProfile  # Ensure StudentProfile is imported
+from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm
 
 main = Blueprint('main', __name__)
 
@@ -57,10 +57,7 @@ def new_user():
             role_id = form.role_id.data
             print(f"Selected role_id: {role_id}")  # Debug statement
             return redirect(url_for('main.new_user_details', role_id=role_id))
-        else:
-            print("Form validation failed in new_user")
-            print(form.errors)
-    return render_template('user_type_form.html', form=form, title='Select User Type')
+    return render_template('user_type_form.html', form=form, title='New User')
 
 @main.route('/user/new/details/<int:role_id>', methods=['GET', 'POST'])
 @login_required
@@ -114,6 +111,13 @@ def new_user_details(role_id):
             user.set_password(default_password)
             db.session.add(user)
             db.session.commit()
+            
+            # Create student profile if the user is a student
+            if user.role.name == 'Student':
+                student_profile = StudentProfile(user_id=user.id)
+                db.session.add(student_profile)
+                db.session.commit()
+            
             flash('User created successfully.')
             return redirect(url_for('main.users'))
         else:
@@ -195,40 +199,13 @@ def batch_update():
             for user_id in user_ids:
                 user = User.query.get(user_id)
                 if user and user.role.name == 'Student':
+                    if not user.student_profile:
+                        user.student_profile = StudentProfile(user_id=user.id)
                     if form.age.data is not None:
                         user.student_profile.age = form.age.data
                     if form.grade.data:
                         user.student_profile.grade = form.grade.data
-                    if form.gender_id.data:
-                        user.student_profile.gender_id = form.gender_id.data
-                    if form.racial_category_id.data:
-                        user.student_profile.racial_category_id = form.racial_category_id.data
-                    if form.ethnic_background_id.data:
-                        user.student_profile.ethnic_background_id = form.ethnic_background_id.data
-                    if form.country_id.data:
-                        user.student_profile.country_id = form.country_id.data
-                    if form.pronouns.data:
-                        user.student_profile.pronouns = form.pronouns.data
-                    if form.family_structure.data:
-                        user.student_profile.family_structure = form.family_structure.data
-                    if form.custodial_arrangements.data:
-                        user.student_profile.custodial_arrangements = form.custodial_arrangements.data
-                    if form.hispanic_latino_origin.data is not None:
-                        user.student_profile.hispanic_latino_origin = form.hispanic_latino_origin.data
-                    if form.primary_language.data:
-                        user.student_profile.primary_language = form.primary_language.data
-                    if form.other_languages.data:
-                        user.student_profile.other_languages = form.other_languages.data
-                    if form.english_proficiency.data:
-                        user.student_profile.english_proficiency = form.english_proficiency.data
-                    if form.esl_ell_status.data is not None:
-                        user.student_profile.esl_ell_status = form.esl_ell_status.data
-                    if form.citizenship_status.data:
-                        user.student_profile.citizenship_status = form.citizenship_status.data
-                    if form.immigration_status.data:
-                        user.student_profile.immigration_status = form.immigration_status.data
             db.session.commit()
             flash('Batch update successful.')
             return redirect(url_for('main.users'))
     return render_template('batch_update.html', form=form)
-    
