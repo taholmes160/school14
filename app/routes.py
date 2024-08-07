@@ -182,7 +182,13 @@ def batch_update():
     form = BatchUpdateForm()
     if request.method == 'POST':
         user_ids = request.form.getlist('user_ids')
+        print(f"User IDs: {user_ids}")  # Debugging statement
         if form.validate_on_submit():
+            print(f"Form data: {form.data}")  # Debugging statement
+            if not user_ids:
+                print("No user IDs selected")  # Debugging statement
+                flash('No users selected for update.')
+                return redirect(url_for('main.users'))
             for user_id in user_ids:
                 user = User.query.get(user_id)
                 if user and user.role.name == 'Student':
