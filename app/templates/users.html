@@ -15,6 +15,7 @@ Users - School Management App
 <a href="{{ url_for('main.new_user') }}">Create New User</a>
 
 <form method="POST" action="{{ url_for('main.batch_update') }}">
+    {{ form.hidden_tag() }}  <!-- Include the CSRF token -->
     <div class="table-container">
         <table>
             <thead>
@@ -53,6 +54,7 @@ Users - School Management App
     </div>
     <button type="submit">Batch Update</button>
 </form>
+
 <div class="pagination-container">
     <ul class="pagination">
         {% if pagination.has_prev %}
@@ -60,9 +62,11 @@ Users - School Management App
         {% endif %}
         {% for page_num in pagination.iter_pages() %}
         {% if page_num %}
-        <li class="{% if page_num == pagination.page %}active{% endif %}"><a href="{{ url_for('main.users', page=page_num, per_page=per_page, search=search) }}">{{ page_num }}</a></li>
+        <li class="{% if page_num == pagination.page %}active{% endif %}">
+            <a href="{{ url_for('main.users', page=page_num, per_page=per_page, search=search) }}">{{ page_num }}</a>
+        </li>
         {% else %}
-        <li class="disabled"><span>&hellip;</span></li>
+        <li><span class="ellipsis">…</span></li>
         {% endif %}
         {% endfor %}
         {% if pagination.has_next %}

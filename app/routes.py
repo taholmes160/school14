@@ -43,8 +43,10 @@ def users():
             (User.last_name.contains(search))
         )
     users = users_query.paginate(page=page, per_page=per_page, error_out=False)
-    return render_template('users.html', users=users.items, pagination=users, search=search)
-
+    
+    form = BatchUpdateForm()  # Create an instance of the form
+    
+    return render_template('users.html', users=users.items, pagination=users, search=search, form=form)
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
@@ -182,6 +184,7 @@ def batch_update():
     form = BatchUpdateForm()
     if request.method == 'POST':
         user_ids = request.form.getlist('user_ids')
+        print(f"Form data: {request.form}")  # Debugging statement
         print(f"User IDs: {user_ids}")  # Debugging statement
         if form.validate_on_submit():
             print(f"Form data: {form.data}")  # Debugging statement
@@ -224,51 +227,8 @@ def batch_update():
                         user.student_profile.citizenship_status = form.citizenship_status.data
                     if form.immigration_status.data:
                         user.student_profile.immigration_status = form.immigration_status.data
-                    if form.free_reduced_lunch_eligibility.data is not None:
-                        user.student_profile.free_reduced_lunch_eligibility = form.free_reduced_lunch_eligibility.data
-                    if form.family_income_bracket.data:
-                        user.student_profile.family_income_bracket = form.family_income_bracket.data
-                    if form.parent_education_level.data:
-                        user.student_profile.parent_education_level = form.parent_education_level.data
-                    if form.parent_occupation.data:
-                        user.student_profile.parent_occupation = form.parent_occupation.data
-                    if form.current_grade_level.data:
-                        user.student_profile.current_grade_level = form.current_grade_level.data
-                    if form.projected_graduation_year.data:
-                        user.student_profile.projected_graduation_year = form.projected_graduation_year.data
-                    if form.iep_status.data is not None:
-                        user.student_profile.iep_status = form.iep_status.data
-                    if form.plan_504_status.data is not None:
-                        user.student_profile.plan_504_status = form.plan_504_status.data
-                    if form.gifted_talented_program.data is not None:
-                        user.student_profile.gifted_talented_program = form.gifted_talented_program.data
-                    if form.transportation.data:
-                        user.student_profile.transportation = form.transportation.data
-                    if form.bus_route_number.data:
-                        user.student_profile.bus_route_number = form.bus_route_number.data
-                    if form.after_school_program.data:
-                        user.student_profile.after_school_program = form.after_school_program.data
-                    if form.internet_access.data is not None:
-                        user.student_profile.internet_access = form.internet_access.data
-                    if form.device_ownership.data:
-                        user.student_profile.device_ownership = form.device_ownership.data
-                    if form.active_duty_military_parent.data is not None:
-                        user.student_profile.active_duty_military_parent = form.active_duty_military_parent.data
-                    if form.veteran_status_parent.data is not None:
-                        user.student_profile.veteran_status_parent = form.veteran_status_parent.data
-                    if form.homeless_status.data is not None:
-                        user.student_profile.homeless_status = form.homeless_status.data
-                    if form.migrant_education_program.data is not None:
-                        user.student_profile.migrant_education_program = form.migrant_education_program.data
-                    if form.foster_care_involvement.data is not None:
-                        user.student_profile.foster_care_involvement = form.foster_care_involvement.data
-                    if form.tribe_membership.data is not None:
-                        user.student_profile.tribe_membership = form.tribe_membership.data
-                    if form.religious_affiliation.data:
-                        user.student_profile.religious_affiliation = form.religious_affiliation.data
-                    if form.church_affiliation.data:
-                        user.student_profile.church_affiliation = form.church_affiliation.data
-                    db.session.commit()
-            flash('Selected users updated successfully.')
+            db.session.commit()
+            flash('Batch update successful.')
             return redirect(url_for('main.users'))
     return render_template('batch_update.html', form=form)
+    
