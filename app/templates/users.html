@@ -33,7 +33,7 @@ Users - School Management App
             <tbody>
                 {% for user in users %}
                 <tr>
-                    <td><input type="checkbox" name="user_ids" value="{{ user.id }}"></td>
+                    <td><input type="checkbox" name="user_ids" value="{{ user.id }}" class="user-checkbox"></td>
                     <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
@@ -54,7 +54,6 @@ Users - School Management App
     </div>
     <button type="submit">Batch Update</button>
 </form>
-
 <div class="pagination-container">
     <ul class="pagination">
         {% if pagination.has_prev %}
@@ -74,4 +73,41 @@ Users - School Management App
         {% endif %}
     </ul>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve selected user IDs from local storage
+        const selectedUserIds = JSON.parse(localStorage.getItem('selectedUserIds')) || [];
+
+        // Restore checkbox selections
+        document.querySelectorAll('.user-checkbox').forEach(checkbox => {
+            if (selectedUserIds.includes(checkbox.value)) {
+                checkbox.checked = true;
+            }
+
+            // Add event listener to update local storage when checkbox is clicked
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    selectedUserIds.push(this.value);
+                } else {
+                    const index = selectedUserIds.indexOf(this.value);
+                    if (index > -1) {
+                        selectedUserIds.splice(index, 1);
+                    }
+                }
+                localStorage.setItem('selectedUserIds', JSON.stringify(selectedUserIds));
+            });
+        });
+
+        // Add hidden inputs for selected user IDs to the batch update form
+        const batchUpdateForm = document.querySelector('form[method="POST"]');
+        selectedUserIds.forEach(userId => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'user_ids';
+            input.value = userId;
+            batchUpdateForm.appendChild(input);
+        });
+    });
+</script>
 {% endblock %}
