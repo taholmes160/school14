@@ -1,7 +1,7 @@
 # app/forms.py
     
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, TextAreaField, DateField, SelectMultipleField, widgets
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, BooleanField, TextAreaField, DateField, SelectMultipleField, widgets
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from app.models import Role, Gender, RacialCategory, EthnicBackground, Country
 
@@ -65,6 +65,7 @@ class BatchUpdateForm(FlaskForm):
 class AdvancedSearchForm(FlaskForm):
     grade = StringField('Grade', validators=[Length(max=80)])
     ethnic_origin = SelectField('Ethnic Origin', coerce=int)
+    search_empty_fields = BooleanField('Search for empty fields')
     search = SubmitField('Search')
 
     def __init__(self, *args, **kwargs):
