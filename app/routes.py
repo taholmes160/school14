@@ -4,8 +4,8 @@ from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request, Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
-from app.models import User, Role, StudentProfile  # Ensure StudentProfile is imported
-from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm
+from app.models import User, Role, StudentProfile, EthnicBackground
+from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm, AdvancedSearchForm
 
 main = Blueprint('main', __name__)
 
@@ -27,7 +27,7 @@ def login():
         return redirect(url_for('main.users'))
     return render_template('login.html', form=form)
 
-@main.route('/users')
+@main.route('/users', methods=['GET', 'POST'])
 @login_required
 def users():
     users_query = User.query.order_by(User.id.asc())
@@ -42,11 +42,19 @@ def users():
             (User.first_name.contains(search)) |
             (User.last_name.contains(search))
         )
+    
+    advanced_search_form = AdvancedSearchForm()
+    if advanced_search_form.validate_on_submit():
+        if advanced_search_form.grade.data:
+            users_query = users_query.filter(User.student_profile.has(grade=advanced_search_form.grade.data))
+        if advanced_search_form.ethnic_origin.data and advanced_search_form.ethnic_origin.data != 0:
+            users_query = users_query.filter(User.student_profile.has(ethnic_background_id=advanced_search_form.ethnic_origin.data))
+    
     users = users_query.paginate(page=page, per_page=per_page, error_out=False)
     
     form = BatchUpdateForm()  # Create an instance of the form
     
-    return render_template('users.html', users=users.items, pagination=users, search=search, form=form)
+    return render_template('users.html', users=users.items, pagination=users, search=search, form=form, advanced_search_form=advanced_search_form)
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
@@ -182,30 +190,26 @@ def user_profile(user_id):
         return redirect(url_for('main.user_profile', user_id=user.id))
     return render_template('user_profile.html', user=user, form=form)
 
-@main.route('/batch_update', methods=['POST', 'GET'])
+@main.route('/batch_update', methods=['POST'])
 @login_required
 def batch_update():
     form = BatchUpdateForm()
-    if request.method == 'POST':
+    if form.validate_on_submit():
         user_ids = request.form.getlist('user_ids')
-        print(f"Form data: {request.form}")  # Debugging statement
-        print(f"User IDs: {user_ids}")  # Debugging statement
-        if form.validate_on_submit():
-            print(f"Form data: {form.data}")  # Debugging statement
-            if not user_ids:
-                print("No user IDs selected")  # Debugging statement
-                flash('No users selected for update.')
-                return redirect(url_for('main.users'))
-            for user_id in user_ids:
-                user = User.query.get(user_id)
-                if user and user.role.name == 'Student':
-                    if not user.student_profile:
-                        user.student_profile = StudentProfile(user_id=user.id)
-                    if form.age.data is not None:
-                        user.student_profile.age = form.age.data
-                    if form.grade.data:
-                        user.student_profile.grade = form.grade.data
-            db.session.commit()
-            flash('Batch update successful.')
+        if not user_ids:
+            flash('No users selected for update.')
             return redirect(url_for('main.users'))
+        
+        for user_id in user_ids:
+            user = User.query.get(user_id)
+            if user and user.role.name == 'Student':
+                if not user.student_profile:
+                    user.student_profile = StudentProfile(user_id=user.id)
+                if form.set_age.data is not None:
+                    user.student_profile.age = form.set_age.data
+                if form.set_grade.data:
+                    user.student_profile.grade = form.set_grade.data
+        db.session.commit()
+        flash('Batch update successful.')
+        return redirect(url_for('main.users'))
     return render_template('batch_update.html', form=form)

@@ -1,7 +1,7 @@
 # app/forms.py
     
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, TextAreaField, DateField
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, TextAreaField, DateField, SelectMultipleField, widgets
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from app.models import Role, Gender, RacialCategory, EthnicBackground, Country
 
@@ -55,3 +55,18 @@ class BatchUpdateForm(FlaskForm):
     age = IntegerField('Age', validators=[DataRequired()])
     grade = StringField('Grade', validators=[Length(max=10)])
     submit = SubmitField('Update Selected Users')
+    select_grade = SelectMultipleField('Select Grade', choices=[('NULL', 'No Grade')] + [(str(i), f'{i}th') for i in range(1, 13)], option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
+    # Add a new field to set the grade for the batch update
+    set_grade = StringField('Set Grade to', validators=[Length(max=10)])
+    # Add a new field to set the age for the batch update
+    set_age = IntegerField('Set Age to')
+    submit = SubmitField('Update Selected Users')
+
+class AdvancedSearchForm(FlaskForm):
+    grade = StringField('Grade', validators=[Length(max=80)])
+    ethnic_origin = SelectField('Ethnic Origin', coerce=int)
+    search = SubmitField('Search')
+
+    def __init__(self, *args, **kwargs):
+        super(AdvancedSearchForm, self).__init__(*args, **kwargs)
+        self.ethnic_origin.choices = [(0, 'Any')] + [(ethnic.id, ethnic.name) for ethnic in EthnicBackground.query.all()]

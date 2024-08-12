@@ -12,6 +12,18 @@ Users - School Management App
     <input type="text" name="search" value="{{ search }}" placeholder="Search by last name...">
     <button type="submit">Search</button>
 </form>
+
+<form method="POST" action="{{ url_for('main.users') }}">
+    {{ advanced_search_form.hidden_tag() }}
+    <div>
+        {{ advanced_search_form.grade.label }} {{ advanced_search_form.grade() }}
+    </div>
+    <div>
+        {{ advanced_search_form.ethnic_origin.label }} {{ advanced_search_form.ethnic_origin() }}
+    </div>
+    <button type="submit">Advanced Search</button>
+</form>
+
 <a href="{{ url_for('main.new_user') }}">Create New User</a>
 
 <form method="POST" action="{{ url_for('main.batch_update') }}">
@@ -51,6 +63,12 @@ Users - School Management App
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div>
+        {{ form.set_age.label }} {{ form.set_age() }}
+    </div>
+    <div>
+        {{ form.set_grade.label }} {{ form.set_grade() }}
     </div>
     <button type="submit">Batch Update</button>
 </form>
