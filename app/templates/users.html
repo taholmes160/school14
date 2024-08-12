@@ -37,11 +37,9 @@ Users - School Management App
                 <tr>
                     <th>Select</th>
                     <th>ID</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Role</th>
+                    <th>Name</th>
+                    <th>Grade</th>
+                    <th>Age</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -50,11 +48,9 @@ Users - School Management App
                 <tr>
                     <td><input type="checkbox" name="user_ids" value="{{ user.id }}" class="user-checkbox"></td>
                     <td>{{ user.id }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.first_name }}</td>
-                    <td>{{ user.last_name }}</td>
-                    <td>{{ user.role.name }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.student_profile.grade if user.student_profile else 'N/A' }}</td>
+                    <td>{{ user.student_profile.age if user.student_profile else 'N/A' }}</td>
                     <td>
                         <a href="{{ url_for('main.edit_user', user_id=user.id) }}">Edit</a>
                         <form action="{{ url_for('main.delete_user', user_id=user.id) }}" method="post" style="display:inline;">

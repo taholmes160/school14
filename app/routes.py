@@ -30,9 +30,9 @@ def login():
 @main.route('/users', methods=['GET', 'POST'])
 @login_required
 def users():
-    users_query = User.query.order_by(User.id.asc())
+    users_query = User.query.order_by(User.id.asc()).outerjoin(StudentProfile)
     page = request.args.get('page', 1, type=int)
-    per_page = 13
+    per_page = 10
     
     search = request.args.get('search', '')
     if search:
