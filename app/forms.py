@@ -52,10 +52,6 @@ class UserProfileForm(FlaskForm):
     submit = SubmitField('Update Profile')
 
 class BatchUpdateForm(FlaskForm):
-    age = IntegerField('Age', validators=[DataRequired()])
-    grade = StringField('Grade', validators=[Length(max=10)])
-    submit = SubmitField('Update Selected Users')
-    select_grade = SelectMultipleField('Select Grade', choices=[('NULL', 'No Grade')] + [(str(i), f'{i}th') for i in range(1, 13)], option_widget=widgets.CheckboxInput(), widget=widgets.ListWidget(prefix_label=False))
     # Add a new field to set the grade for the batch update
     set_grade = StringField('Set Grade to', validators=[Length(max=10)])
     # Add a new field to set the age for the batch update

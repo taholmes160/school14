@@ -30,9 +30,7 @@ def login():
 @main.route('/users', methods=['GET', 'POST'])
 @login_required
 def users():
-    users_query = User.query.order_by(User.id.asc()).outerjoin(StudentProfile)
-    page = request.args.get('page', 1, type=int)
-    per_page = 10
+    users_query = User.query.outerjoin(StudentProfile)
     
     search = request.args.get('search', '')
     if search:
@@ -57,12 +55,22 @@ def users():
                 (User.username == None) | (User.username == '')
             )
     
-    users = users_query.paginate(page=page, per_page=per_page, error_out=False)
+    # Sorting logic
+    sort_by = request.args.get('sort_by', default='id', type=str)
+    sort_order = request.args.get('sort_order', default='asc', type=str)
+    
+    if sort_by == 'grade':
+        users_query = users_query.order_by(StudentProfile.grade.asc() if sort_order == 'asc' else StudentProfile.grade.desc())
+    elif sort_by == 'age':
+        users_query = users_query.order_by(StudentProfile.age.asc() if sort_order == 'asc' else StudentProfile.age.desc())
+    else:
+        users_query = users_query.order_by(getattr(User, sort_by).asc() if sort_order == 'asc' else getattr(User, sort_by).desc())
+    
+    users = users_query.all()
     
     form = BatchUpdateForm()  # Create an instance of the form
     
-    return render_template('users.html', users=users.items, pagination=users, search=search, form=form, advanced_search_form=advanced_search_form)
-
+    return render_template('users.html', users=users, search=search, form=form, advanced_search_form=advanced_search_form, sort_by=sort_by, sort_order=sort_order)
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
@@ -204,6 +212,7 @@ def batch_update():
     form = BatchUpdateForm()
     if form.validate_on_submit():
         user_ids = request.form.getlist('user_ids')
+        print(f"User IDs: {user_ids}")  # Debug print
         if not user_ids:
             flash('No users selected for update.')
             return redirect(url_for('main.users'))
@@ -214,10 +223,13 @@ def batch_update():
                 if not user.student_profile:
                     user.student_profile = StudentProfile(user_id=user.id)
                 if form.set_age.data is not None:
+                    print(f"Setting age for user {user_id} to {form.set_age.data}")  # Debug print
                     user.student_profile.age = form.set_age.data
                 if form.set_grade.data:
+                    print(f"Setting grade for user {user_id} to {form.set_grade.data}")  # Debug print
                     user.student_profile.grade = form.set_grade.data
         db.session.commit()
         flash('Batch update successful.')
         return redirect(url_for('main.users'))
     return render_template('batch_update.html', form=form)
+    

@@ -137,3 +137,34 @@ input[type="checkbox"] {
 .tab.active {
     display: block;
 }
+
+.batch-update-form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.batch-update-fields {
+    margin-bottom: 10px;
+}
+
+.batch-update-button {
+    margin-top: 10px;
+}
+
+.site-footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+}
+.sort-link {
+    color: white; /* Ensure the text remains white */
+    text-decoration: none; /* Remove underline if needed */
+}
+
+.sort-link:hover {
+    color: white; /* Ensure the text remains white on hover */
+}
