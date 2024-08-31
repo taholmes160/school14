@@ -32,30 +32,19 @@ def login():
 def users():
     users_query = User.query.outerjoin(StudentProfile)
     
-    search = request.args.get('search', '')
-    if search:
-        users_query = users_query.filter(
-            (User.username.contains(search)) |
-            (User.email.contains(search)) |
-            (User.first_name.contains(search)) |
-            (User.last_name.contains(search))
-        )
-    
     advanced_search_form = AdvancedSearchForm()
-    if advanced_search_form.validate_on_submit():
-        if advanced_search_form.grade.data:
-            users_query = users_query.filter(User.student_profile.has(grade=advanced_search_form.grade.data))
-        if advanced_search_form.ethnic_origin.data and advanced_search_form.ethnic_origin.data != 0:
-            users_query = users_query.filter(User.student_profile.has(ethnic_background_id=advanced_search_form.ethnic_origin.data))
-        if advanced_search_form.search_empty_fields.data:
-            users_query = users_query.filter(
-                (User.first_name == None) | (User.first_name == '') |
-                (User.last_name == None) | (User.last_name == '') |
-                (User.email == None) | (User.email == '') |
-                (User.username == None) | (User.username == '')
-            )
+    if advanced_search_form.validate_on_submit() or request.args.get('filter_field'):
+        filter_field = request.args.get('filter_field', advanced_search_form.filter_field.data)
+        filter_value = request.args.get('filter_value', advanced_search_form.filter_value.data)
+        
+        print(f"Filter Field: {filter_field}")  # Debug statement
+        print(f"Filter Value: {filter_value}")  # Debug statement
+        
+        if filter_field == 'grade':
+            users_query = users_query.filter(StudentProfile.grade == filter_value)
+        elif filter_field == 'ethnic_origin':
+            users_query = users_query.filter(StudentProfile.ethnic_background_id == filter_value)
     
-    # Sorting logic
     sort_by = request.args.get('sort_by', default='id', type=str)
     sort_order = request.args.get('sort_order', default='asc', type=str)
     
@@ -70,7 +59,8 @@ def users():
     
     form = BatchUpdateForm()  # Create an instance of the form
     
-    return render_template('users.html', users=users, search=search, form=form, advanced_search_form=advanced_search_form, sort_by=sort_by, sort_order=sort_order)
+    return render_template('users.html', users=users, form=form, advanced_search_form=advanced_search_form, sort_by=sort_by, sort_order=sort_order)
+
 
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required

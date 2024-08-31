@@ -10,18 +10,17 @@ Users - School Management App
 {% block content %}
 <h2>Users</h2>
 <form method="GET" action="{{ url_for('main.users') }}">
-    <input type="text" name="search" value="{{ search }}" placeholder="Search by last name...">
+    <div>
+        {{ advanced_search_form.filter_field.label }} {{ advanced_search_form.filter_field() }}
+    </div>
+    <div>
+        {{ advanced_search_form.filter_value.label }} {{ advanced_search_form.filter_value() }}
+    </div>
     <button type="submit">Search</button>
 </form>
 
 <form method="POST" action="{{ url_for('main.batch_update') }}" class="batch-update-form">
     {{ advanced_search_form.hidden_tag() }}
-    <div>
-        {{ advanced_search_form.grade.label }} {{ advanced_search_form.grade() }}
-    </div>
-    <div>
-        {{ advanced_search_form.ethnic_origin.label }} {{ advanced_search_form.ethnic_origin() }}
-    </div>
     <table>
         <thead>
             <tr>

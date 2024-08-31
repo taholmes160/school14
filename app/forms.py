@@ -59,11 +59,10 @@ class BatchUpdateForm(FlaskForm):
     submit = SubmitField('Update Selected Users')
 
 class AdvancedSearchForm(FlaskForm):
-    grade = StringField('Grade', validators=[Length(max=80)])
-    ethnic_origin = SelectField('Ethnic Origin', coerce=int)
-    search_empty_fields = BooleanField('Search for empty fields')
-    search = SubmitField('Search')
+    filter_field = SelectField('Filter By', choices=[('grade', 'Grade'), ('ethnic_origin', 'Ethnic Origin')], validators=[DataRequired()])
+    filter_value = StringField('Filter Value', validators=[DataRequired()])
+    submit = SubmitField('Filter')
 
     def __init__(self, *args, **kwargs):
         super(AdvancedSearchForm, self).__init__(*args, **kwargs)
-        self.ethnic_origin.choices = [(0, 'Any')] + [(ethnic.id, ethnic.name) for ethnic in EthnicBackground.query.all()]
+        # Remove the initialization of ethnic_origin since it's no longer needed
