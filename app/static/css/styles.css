@@ -95,9 +95,7 @@ input[type="checkbox"] {
     padding: 0; /* Remove default padding */
     vertical-align: middle; /* Align checkbox vertically in the middle */
 }
-/* static/css/styles.css */
 
-/* Add or update these styles */
 .tab-container {
     width: 100%;
     display: flex;
@@ -167,4 +165,14 @@ input[type="checkbox"] {
 
 .sort-link:hover {
     color: white; /* Ensure the text remains white on hover */
+}
+
+header h1 a {
+    color: inherit; /* Inherit the color from the parent element */
+    text-decoration: none; /* Remove the underline */
+}
+
+/* Optionally, you can add hover effects */
+header h1 a:hover {
+    text-decoration: underline; /* Add underline on hover */
 }
