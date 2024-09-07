@@ -38,13 +38,17 @@ Users - School Management App
             <td>{{ user.student_profile.grade if user.student_profile else 'N/A' }}</td>
             <td>{{ user.student_profile.age if user.student_profile else 'N/A' }}</td>
             <td>
+                <a href="{{ url_for('main.edit_user', user_id=user.id) }}">Edit</a>
+                <form action="{{ url_for('main.delete_user', user_id=user.id) }}" method="post" style="display:inline;">
+                    <a href="#" onclick="this.parentNode.submit(); return false;">Delete</a>
                 </form>
+                <a href="{{ url_for('main.user_profile', user_id=user.id) }}">Profile</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
+<br><br><br><br>
 <footer class="site-footer">
     <!-- Your footer content here -->
 </footer>

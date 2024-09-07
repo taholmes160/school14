@@ -52,3 +52,8 @@ class AdvancedSearchForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super(AdvancedSearchForm, self).__init__(*args, **kwargs)
         # Remove the initialization of ethnic_origin since it's no longer needed
+
+class UserProfileForm(FlaskForm):
+    age = IntegerField('Age', validators=[DataRequired()])
+    grade = StringField('Grade', validators=[DataRequired()])
+    submit = SubmitField('Update')

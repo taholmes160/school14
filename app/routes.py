@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, url_for, request, Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 from app.models import User, Role, StudentProfile, EthnicBackground
-from app.forms import LoginForm, UserForm, UserTypeForm, BatchUpdateForm, AdvancedSearchForm
+from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm, AdvancedSearchForm
 
 main = Blueprint('main', __name__)
 
@@ -61,7 +61,6 @@ def users():
     
     return render_template('users.html', users=users, form=form, advanced_search_form=advanced_search_form, sort_by=sort_by, sort_order=sort_order)
 
-
 @main.route('/user/new', methods=['GET', 'POST'])
 @login_required
 def new_user():
@@ -87,3 +86,49 @@ def new_user_details(role_id):
 
     return render_template('user_form.html', form=form, title='New User Details')
 
+# app/routes.py
+
+@main.route('/user/profile/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def user_profile(user_id):
+    user = User.query.get_or_404(user_id)
+    
+    # Ensure the student profile exists
+    if user.student_profile is None:
+        user.student_profile = StudentProfile(user_id=user.id)
+        db.session.add(user.student_profile)
+        db.session.commit()
+
+    form = UserProfileForm(obj=user.student_profile)  # Populate the form with student profile data
+
+    if form.validate_on_submit():
+        form.populate_obj(user.student_profile)
+        db.session.commit()
+        flash('Profile updated successfully')
+        return redirect(url_for('main.users'))  # Redirect to the users list
+
+    return render_template('user_profile.html', user=user, form=form)
+
+
+@main.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def edit_user(user_id):
+    user = User.query.get_or_404(user_id)
+    form = UserForm(obj=user)  # Populate the form with user data
+
+    if form.validate_on_submit():
+        form.populate_obj(user)
+        db.session.commit()
+        flash('User updated successfully')
+        return redirect(url_for('main.users'))
+
+    return render_template('user_form.html', form=form, title='Edit User')
+
+@main.route('/user/delete/<int:user_id>', methods=['POST'])
+@login_required
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('User deleted successfully')
+    return redirect(url_for('main.users'))
