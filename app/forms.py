@@ -36,20 +36,6 @@ class UserTypeForm(FlaskForm):
         super(UserTypeForm, self).__init__(*args, **kwargs)
         self.role_id.choices = [(role.id, role.name) for role in Role.query.order_by(Role.name).all()]
 
-class UserProfileForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=80)])
-    email = StringField('Email', validators=[DataRequired(), Length(max=120)])
-    first_name = StringField('First Name', validators=[Length(max=80)])
-    last_name = StringField('Last Name', validators=[Length(max=80)])
-    age = IntegerField('Age')
-    grade = StringField('Grade', validators=[Length(max=80)])
-    address = StringField('Address', validators=[Length(max=120)])
-    parent_guardian = StringField('Parent/Guardian', validators=[Length(max=120)])
-    demographic_info = TextAreaField('Demographic Info')
-    discipline_records = TextAreaField('Discipline Records')
-    subject = StringField('Subject', validators=[Length(max=80)])
-    phone_number = StringField('Phone Number', validators=[Length(max=20)])
-    submit = SubmitField('Update Profile')
 
 class BatchUpdateForm(FlaskForm):
     # Add a new field to set the grade for the batch update

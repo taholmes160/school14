@@ -7,53 +7,7 @@ User Profile - School Management App
 {% endblock %}
 
 {% block content %}
-<h2>{{ user.username }}'s Profile</h2>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    {% if user.role.name == 'Student' %}
-        <div>
-            {{ form.age.label }}<br>
-            {{ form.age(size=32) }}<br>
-            {% for error in form.age.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.grade.label }}<br>
-            {{ form.grade(size=32) }}<br>
-            {% for error in form.grade.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.address.label }}<br>
-            {{ form.address(size=32) }}<br>
-            {% for error in form.address.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.parent_guardian.label }}<br>
-            {{ form.parent_guardian(size=32) }}<br>
-            {% for error in form.parent_guardian.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.demographic_info.label }}<br>
-            {{ form.demographic_info(rows=5, cols=40) }}<br>
-            {% for error in form.demographic_info.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.discipline_records.label }}<br>
-            {{ form.discipline_records(rows=5, cols=40) }}<br>
-            {% for error in form.discipline_records.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <!-- Add more fields as needed -->
+
     {% elif user.role.name == 'Parent' %}
         <div>
             {{ form.address.label }}<br>
@@ -96,4 +50,5 @@ User Profile - School Management App
         {{ form.submit() }}
     </div>
 </form>
+-->
 {% endblock %}
