@@ -1,12 +1,13 @@
 # app/routes.py
 
 from datetime import datetime
-from flask import render_template, flash, redirect, url_for, request, Blueprint
+from flask import render_template, flash, redirect, url_for, request, Blueprint, send_file
 from flask_login import current_user, login_user, logout_user, login_required
+from weasyprint import HTML
+from io import BytesIO
 from app import db
 from app.models import User, Role, StudentProfile, EthnicBackground
 from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm, AdvancedSearchForm
-
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -71,22 +72,73 @@ def new_user():
             print(f"Selected role_id: {role_id}")  # Debug statement
             return redirect(url_for('main.new_user_details', role_id=role_id))
     return render_template('user_type_form.html', form=form, title='New User')
-
+    
 @main.route('/user/new/details/<int:role_id>', methods=['GET', 'POST'])
 @login_required
 def new_user_details(role_id):
     form = UserForm()
-    print(f"Received role_id: {role_id}")  # Debug statement
-    
+    form.role_id.data = role_id  # Set the role_id in the form
+
+    # Determine the user type prefix based on the role_id
+    role = Role.query.get(role_id)
+    if role.name.lower() == 'student':
+        user_type_prefix = 'stu'
+    elif role.name.lower() == 'teacher':
+        user_type_prefix = 'tea'
+    elif role.name.lower() == 'staff':
+        user_type_prefix = 'sta'
+    elif role.name.lower() == 'parent':
+        user_type_prefix = 'par'
+    else:
+        user_type_prefix = 'usr'  # Default prefix
+
+    form.user_type_prefix.data = user_type_prefix  # Set the user type prefix in the form
+
     # Generate ID number
     current_year = datetime.now().year
     last_user = User.query.order_by(User.id.desc()).first()
+    if last_user:
+        last_id = last_user.id
+        new_id = last_id + 1
+    else:
+        new_id = int(f"{current_year}0001")
 
-    # Add your logic for creating a new user here
+    # Generate username and email
+    username = f"{user_type_prefix}{new_id}"
+    email = f"{new_id}@school.edu"
+
+    # Set the default password
+    password = 'school1234'
+
+    # Pre-fill the form fields
+    form.username.data = username
+    form.email.data = email
+    form.password.data = password
+    form.confirm_password.data = password
+
+    if form.validate_on_submit():
+        # Create the new user
+        new_user = User(
+            id=new_id,
+            username=form.username.data,
+            email=form.email.data,
+            role_id=role_id,
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            is_active=form.is_active.data,
+            is_verified=form.is_verified.data,
+            is_admin=form.is_admin.data
+        )
+        new_user.set_password(form.password.data)
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash('New user created successfully')
+        return redirect(url_for('main.users'))
 
     return render_template('user_form.html', form=form, title='New User Details')
-
-# app/routes.py
+    
 
 @main.route('/user/profile/<int:user_id>', methods=['GET', 'POST'])
 @login_required
@@ -132,3 +184,25 @@ def delete_user(user_id):
     db.session.commit()
     flash('User deleted successfully')
     return redirect(url_for('main.users'))
+
+@main.route('/report/grade', methods=['GET', 'POST'])
+@login_required
+def report_grade():
+    if request.method == 'POST':
+        grade = request.form.get('grade')
+        students = User.query.join(StudentProfile).filter(StudentProfile.grade == grade).all()
+        
+        # Render the HTML template for the PDF
+        html = render_template('report_grade.html', students=students, grade=grade)
+        
+        # Generate the PDF
+        pdf = HTML(string=html).write_pdf()
+        
+        # Create a response with the PDF file
+        response = BytesIO()
+        response.write(pdf)
+        response.seek(0)
+        
+        return send_file(response, mimetype='application/pdf', as_attachment=True, download_name=f'grade_{grade}_report.pdf')
+    
+    return render_template('select_grade.html')

@@ -3,78 +3,56 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ title }} - School Management App
+New User Details
 {% endblock %}
 
 {% block content %}
-<h2>{{ title }}</h2>
-<form method="POST">
+<h2>New User Details</h2>
+<form method="POST" action="{{ url_for('main.new_user_details', role_id=form.role_id.data) }}">
     {{ form.hidden_tag() }}
+    {{ form.user_type_prefix() }}  <!-- Hidden field for user type prefix -->
     <div>
         {{ form.username.label }}<br>
-        {{ form.username(size=32, class="form-control") }}<br>
-        {% for error in form.username.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.username(size=32) }}
     </div>
     <div>
         {{ form.email.label }}<br>
-        {{ form.email(size=32, class="form-control") }}<br>
-        {% for error in form.email.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.email(size=32) }}
     </div>
     <div>
         {{ form.password.label }}<br>
-        {{ form.password(size=32, class="form-control") }}<br>
-        {% for error in form.password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.password(size=32) }}
     </div>
     <div>
         {{ form.confirm_password.label }}<br>
-        {{ form.confirm_password(size=32, class="form-control") }}<br>
-        {% for error in form.confirm_password.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.confirm_password(size=32) }}
+    </div>
+    <div>
+        {{ form.role_id.label }}<br>
+        {{ form.role_id() }}
     </div>
     <div>
         {{ form.first_name.label }}<br>
-        {{ form.first_name(size=32, class="form-control") }}<br>
-        {% for error in form.first_name.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.first_name(size=32) }}
     </div>
     <div>
         {{ form.last_name.label }}<br>
-        {{ form.last_name(size=32, class="form-control") }}<br>
-        {% for error in form.last_name.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.last_name(size=32) }}
     </div>
     <div>
         {{ form.is_active.label }}<br>
-        {{ form.is_active(class="form-check-input") }}<br>
-        {% for error in form.is_active.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.is_active() }}
     </div>
     <div>
         {{ form.is_verified.label }}<br>
-        {{ form.is_verified(class="form-check-input") }}<br>
-        {% for error in form.is_verified.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.is_verified() }}
     </div>
     <div>
         {{ form.is_admin.label }}<br>
-        {{ form.is_admin(class="form-check-input") }}<br>
-        {% for error in form.is_admin.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.is_admin() }}
     </div>
     <div>
-        {{ form.submit(class="btn btn-primary") }}
+        {{ form.submit() }}
     </div>
 </form>
 {% endblock %}

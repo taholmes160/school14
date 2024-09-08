@@ -1,7 +1,7 @@
 # app/forms.py
     
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, BooleanField, TextAreaField, DateField, SelectMultipleField, widgets
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, BooleanField, TextAreaField, DateField, SelectMultipleField, widgets, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from app.models import Role, Gender, RacialCategory, EthnicBackground, Country
 
@@ -11,11 +11,15 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+      
+# app/forms.py
+        
 class UserForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=80)])
-    email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)])
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=128)])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    user_type_prefix = HiddenField('User Type Prefix')
+    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=80)], render_kw={'readonly': True})
+    email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)], render_kw={'readonly': True})
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=128)], render_kw={'readonly': True})
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')], render_kw={'readonly': True})
     first_name = StringField('First Name', validators=[Length(max=80)])
     last_name = StringField('Last Name', validators=[Length(max=80)])
     role_id = SelectField('Role', coerce=int)

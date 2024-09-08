@@ -3,19 +3,16 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ title }} - School Management App
+New User - Select User Type
 {% endblock %}
 
 {% block content %}
-<h2>{{ title }}</h2>
-<form method="POST">
+<h2>Select User Type</h2>
+<form method="POST" action="{{ url_for('main.new_user') }}">
     {{ form.hidden_tag() }}
     <div>
         {{ form.role_id.label }}<br>
-        {{ form.role_id() }}<br>
-        {% for error in form.role_id.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
+        {{ form.role_id() }}
     </div>
     <div>
         {{ form.submit() }}

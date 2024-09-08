@@ -1,0 +1,18 @@
+<!-- app/templates/select_grade.html -->
+
+{% extends "base.html" %}
+
+{% block title %}
+Select Grade - School Management App
+{% endblock %}
+
+{% block content %}
+<h2>Select Grade for Report</h2>
+<form method="POST" action="{{ url_for('main.report_grade') }}">
+    <div>
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" required>
+    </div>
+    <button type="submit">Generate Report</button>
+</form>
+{% endblock %}
