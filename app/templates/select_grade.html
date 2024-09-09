@@ -9,9 +9,10 @@ Select Grade - School Management App
 {% block content %}
 <h2>Select Grade for Report</h2>
 <form method="POST" action="{{ url_for('main.report_grade') }}">
+    {{ form.hidden_tag() }}
     <div>
-        <label for="grade">Grade:</label>
-        <input type="text" id="grade" name="grade" required>
+        {{ form.grade.label }}
+        {{ form.grade() }}
     </div>
     <button type="submit">Generate Report</button>
 </form>

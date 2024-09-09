@@ -7,7 +7,8 @@ from weasyprint import HTML
 from io import BytesIO
 from app import db
 from app.models import User, Role, StudentProfile, EthnicBackground
-from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm, AdvancedSearchForm
+from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm, AdvancedSearchForm, SelectGradeForm
+
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -72,7 +73,7 @@ def new_user():
             print(f"Selected role_id: {role_id}")  # Debug statement
             return redirect(url_for('main.new_user_details', role_id=role_id))
     return render_template('user_type_form.html', form=form, title='New User')
-    
+
 @main.route('/user/new/details/<int:role_id>', methods=['GET', 'POST'])
 @login_required
 def new_user_details(role_id):
@@ -138,7 +139,6 @@ def new_user_details(role_id):
         return redirect(url_for('main.users'))
 
     return render_template('user_form.html', form=form, title='New User Details')
-    
 
 @main.route('/user/profile/<int:user_id>', methods=['GET', 'POST'])
 @login_required
@@ -160,7 +160,6 @@ def user_profile(user_id):
         return redirect(url_for('main.users'))  # Redirect to the users list
 
     return render_template('user_profile.html', user=user, form=form)
-
 
 @main.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
 @login_required
@@ -188,8 +187,9 @@ def delete_user(user_id):
 @main.route('/report/grade', methods=['GET', 'POST'])
 @login_required
 def report_grade():
-    if request.method == 'POST':
-        grade = request.form.get('grade')
+    form = SelectGradeForm()
+    if form.validate_on_submit():
+        grade = form.grade.data
         students = User.query.join(StudentProfile).filter(StudentProfile.grade == grade).all()
         
         # Render the HTML template for the PDF
@@ -205,4 +205,4 @@ def report_grade():
         
         return send_file(response, mimetype='application/pdf', as_attachment=True, download_name=f'grade_{grade}_report.pdf')
     
-    return render_template('select_grade.html')
+    return render_template('select_grade.html', form=form)
