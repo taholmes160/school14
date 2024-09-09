@@ -1,7 +1,7 @@
 # app/forms.py
     
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, HiddenField
+from wtforms import DateField, StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 from app.models import Role
 
@@ -53,6 +53,15 @@ class AdvancedSearchForm(FlaskForm):
 class UserProfileForm(FlaskForm):
     age = IntegerField('Age', validators=[DataRequired()])
     grade = StringField('Grade', validators=[DataRequired()])
+    preferred_name = StringField('Preferred Name', validators=[Length(max=80)])
+    date_of_birth = DateField('Date of Birth', format='%Y-%m-%d', validators=[DataRequired()])
+    place_of_birth = StringField('Place of Birth', validators=[Length(max=255)])
+    gender = SelectField('Gender', choices=[('male', 'Male'), ('female', 'Female')], validators=[DataRequired()])
+    gender_identity = SelectField('Gender Identity', choices=[('cisgender', 'Cisgender'), ('transgender', 'Transgender'), ('non_binary', 'Non-binary'), ('other', 'Other')], validators=[Length(max=50)])
+    pronouns = SelectField('Pronouns', choices=[('he/him', 'He/Him'), ('she/her', 'She/Her'), ('they/them', 'They/Them'), ('other', 'Other')], validators=[Length(max=50)])
+    home_address = StringField('Home Address', validators=[Length(max=255)])
+    phone_numbers = StringField('Phone Numbers', validators=[Length(max=255)])
+    email_address = StringField('Email Address', validators=[Email(), Length(max=120)])
     submit = SubmitField('Update')
 
 class SelectGradeForm(FlaskForm):

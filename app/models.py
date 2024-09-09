@@ -116,12 +116,24 @@ class StudentProfile(db.Model):
     school_assigned_id = db.Column(db.String(50))
     state_assigned_id = db.Column(db.String(50))
     national_id = db.Column(db.String(50))
+    preferred_name = db.Column(db.String(80))
+    date_of_birth = db.Column(db.Date)
+    place_of_birth = db.Column(db.String(255))
+    gender = db.Column(db.String(50))
+    gender_identity = db.Column(db.String(50))
+    pronouns = db.Column(db.String(50))
+    home_address = db.Column(db.String(255))
+    phone_numbers = db.Column(db.String(255))
+    email_address = db.Column(db.String(120))
+    emergency_contacts = db.relationship('EmergencyContact', backref='student_profile', lazy=True)
+    parent_guardians = db.relationship('ParentProfile', backref='student_profile', lazy=True)
     user = db.relationship('User', backref=db.backref('student_profile', uselist=False))
 
 class ParentProfile(db.Model):
     __tablename__ = 'parent_profiles'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    student_profile_id = db.Column(db.Integer, db.ForeignKey('student_profiles.id'), nullable=False)
     address = db.Column(db.String(255))
     phone_number = db.Column(db.String(20))
     user = db.relationship('User', backref=db.backref('parent_profile', uselist=False))
@@ -139,6 +151,7 @@ class EmergencyContact(db.Model):
     __tablename__ = 'emergency_contacts'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    student_profile_id = db.Column(db.Integer, db.ForeignKey('student_profiles.id'), nullable=False)
     name = db.Column(db.String(255))
     relationship = db.Column(db.String(255))
     phone_number = db.Column(db.String(20))

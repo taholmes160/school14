@@ -25,6 +25,69 @@
         {% endfor %}
     </div>
     <div>
+        {{ form.preferred_name.label }}<br>
+        {{ form.preferred_name(size=32) }}<br>
+        {% for error in form.preferred_name.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.date_of_birth.label }}<br>
+        {{ form.date_of_birth(size=32) }}<br>
+        {% for error in form.date_of_birth.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.place_of_birth.label }}<br>
+        {{ form.place_of_birth(size=32) }}<br>
+        {% for error in form.place_of_birth.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.gender.label }}<br>
+        {{ form.gender() }}<br>
+        {% for error in form.gender.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.gender_identity.label }}<br>
+        {{ form.gender_identity() }}<br>
+        {% for error in form.gender_identity.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.pronouns.label }}<br>
+        {{ form.pronouns() }}<br>
+        {% for error in form.pronouns.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.home_address.label }}<br>
+        {{ form.home_address(size=32) }}<br>
+        {% for error in form.home_address.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.phone_numbers.label }}<br>
+        {{ form.phone_numbers(size=32) }}<br>
+        {% for error in form.phone_numbers.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.email_address.label }}<br>
+        {{ form.email_address(size=32) }}<br>
+        {% for error in form.email_address.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </div>
+    <div>
         {{ form.submit(class="btn btn-primary") }}
     </div>
 </form>
