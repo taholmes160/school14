@@ -3,11 +3,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-User Profile - School Management App
+{{ user.first_name }} {{ user.last_name }}'s Profile - School Management App
 {% endblock %}
 
 {% block content %}
-<h2>{{ user.username }}'s Profile</h2>
+<h2>{{ user.first_name }} {{ user.last_name }}'s Profile</h2>
 <form method="POST">
     {{ form.hidden_tag() }}
     <div>
