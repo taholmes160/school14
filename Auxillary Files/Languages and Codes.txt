@@ -1,0 +1,140 @@
+
+
+### Languages and Codes:
+1. **AA**: Afar
+2. **AB**: Abkhazian
+3. **AF**: Afrikaans
+4. **AM**: Amharic
+5. **AR**: Arabic
+6. **AS**: Assamese
+7. **AY**: Aymara
+8. **AZ**: Azerbaijani
+9. **BA**: Bashkir
+10. **BE**: Byelorussian
+11. **BG**: Bulgarian
+12. **BH**: Bihari
+13. **BI**: Bislama
+14. **BN**: Bengali; Bangla
+15. **BO**: Tibetan; Bodskad
+16. **BR**: Breton
+17. **CA**: Catalan
+18. **CO**: Corsican
+19. **CS**: Czech
+20. **CY**: Welsh
+21. **DA**: Danish
+22. **DE**: German
+23. **DZ**: Bhutani
+24. **EL**: Greek
+25. **EN**: English
+26. **EO**: Esperanto
+27. **ES**: Spanish
+28. **ET**: Estonian
+29. **EU**: Basque; Euskera
+30. **FA**: Persian; Farsi
+31. **FI**: Finnish; Suomi
+32. **FJ**: Fiji
+33. **FO**: Faroese
+34. **FR**: French
+35. **FY**: Frisian
+36. **GA**: Irish; Gaeilge
+37. **GD**: Scots Gaelic
+38. **GL**: Galician
+39. **GN**: Guarani
+40. **GU**: Gujarati
+41. **HA**: Hausa
+42. **HI**: Hindi
+43. **HR**: Croatian; Hrvatski
+44. **HU**: Hungarian; Magyar
+45. **HY**: Armenian; Hayeren
+46. **IA**: Interlingua
+47. **IE**: Interlingue
+48. **IK**: Inupiak
+49. **IN**: Indonesian; Bahasa Indonesia
+50. **IS**: Icelandic; Islenzk
+51. **IT**: Italian
+52. **IW**: Hebrew; Iwrith
+53. **JA**: Japanese; Nihongo
+54. **JI**: Yiddish; Jiddisch
+55. **JW**: Javanese; Bahasa Jawa
+56. **KA**: Georgian; Kartuli
+57. **KK**: Kazakh
+58. **KL**: Greenlandic; Kalaallisut
+59. **KM**: Cambodian; Khmer
+60. **KN**: Kannada
+61. **KO**: Korean; Choson-o
+62. **KS**: Kashmiri
+63. **KU**: Kurdish; Zimany Kurdy
+64. **KY**: Kirghiz; Kyrgyz
+65. **LA**: Latin
+66. **LN**: Lingala
+67. **LO**: Laothian; Pha Xa Lao
+68. **LT**: Lithuanian
+69. **LV**: Latvian; Lettish
+70. **MG**: Malagasy
+71. **MI**: Maori
+72. **MK**: Macedonian
+73. **ML**: Malayalam
+74. **MN**: Mongolian
+75. **MO**: Moldavian
+76. **MR**: Marathi
+77. **MS**: Malay; Bahasa Malaysia
+78. **MT**: Maltese
+79. **MY**: Burmese; Myanmasa
+80. **NA**: Nauru
+81. **NE**: Nepali
+82. **NL**: Dutch; Nederlands
+83. **NO**: Norwegian
+84. **OC**: Occitan
+85. **OM**: (Afan) Oromo
+86. **OR**: Oriya
+87. **PA**: Punjabi; Panjabi
+88. **PL**: Polish
+89. **PS**: Pashto, Pushto
+90. **PT**: Portuguese
+91. **QU**: Quechua
+92. **RM**: Rhaeto-Romance
+93. **RN**: Kirundi
+94. **RO**: Romanian
+95. **RU**: Russian
+96. **RW**: Kinyarwanda
+97. **SA**: Sanskrit
+98. **SD**: Sindhi
+99. **SG**: Sangho
+100. **SH**: Serbo-Croatian
+101. **SI**: Singhalese
+102. **SK**: Slovak
+103. **SL**: Slovenian
+104. **SM**: Samoan
+105. **SN**: Shona
+106. **SO**: Somali
+107. **SQ**: Albanian; Shqip
+108. **SR**: Serbian; Srpski
+109. **SS**: Siswati
+110. **ST**: Sesotho
+111. **SU**: Sundanese
+112. **SV**: Swedish; Svenska
+113. **SW**: Swahili
+114. **TA**: Tamil
+115. **TE**: Telugu
+116. **TG**: Tajik
+117. **TH**: Thai
+118. **TI**: Tigrinya
+119. **TK**: Turkmen
+120. **TL**: Tagalog
+121. **TN**: Setswana
+122. **TO**: Tonga
+123. **TR**: Turkish
+124. **TS**: Tsonga
+125. **TT**: Tatar
+126. **TW**: Twi
+127. **UK**: Ukrainian
+128. **UR**: Urdu
+129. **UZ**: Uzbek
+130. **VI**: Vietnamese
+131. **VO**: Volapük
+132. **WO**: Wolof
+133. **XH**: Xhosa
+134. **YO**: Yoruba
+135. **ZH**: Chinese; Zhongwen
+136. **ZU**: Zulu
+

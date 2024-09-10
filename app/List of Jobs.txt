@@ -1,0 +1,773 @@
+ 0010 Abstractor
+ 0020 Accountant, Certified Public
+ 0030 Accountant, Chartered
+ 0040 Accountant, General
+ 0050 Accountant, Management
+ 0060 Accountant, Public
+ 0070 Accounting Practioner
+ 0080 Acupuncture Assistant
+ 0090 Acupuncturist
+ 0100 Adult Care Home, Manager
+ 0110 Agrologist
+ 0120 Alligator Parts Dealer
+ 0130 Ambulance Attendant
+ 0140 Ambulance Driver
+ 0150 Applied Science Technician
+ 0160 Applied Science Technologist
+ 0170 Appraiser, Public
+ 0180 Arborist
+ 0190 Architect
+ 0200 Architecture Student
+ 0210 Armored Car Personnel
+ 0220 Art Therapist
+ 0230 Artificial Inseminator of Animals
+ 0240 Asbestos Abatement Air Monitor 
+0250 Asbestos Abatement Consultant
+ 0260 Asbestos Abatement Field Technician
+ 0270 Asbestos Abatement Inspector
+ 0280 Asbestos Abatement Management Planner
+ 0290 Asbestos Abatement Project Designer
+ 0300 Asbestos Abatement Project Manager
+ 0310 Asbestos Abatement Project Monitor
+ 0320 Asbestos Abatement Supervisor
+ 0330 Asbestos Abatement Training Provider
+ 0340 Asbestos Abatement Worker
+ 0350 Assayor
+ 0360 Assessor
+ 0370 Athlete Agent
+ 0380 Athletic Trainer
+ 0390 Athletic Trainer, Apprentice
+ 0400 Attorney
+ 0410 Auction Clerk
+ 0420 Auction House Operator
+ 0430 Auctioneer
+ 0440 Auctioneer Apprentice
+ 0450 Audiologist
+ 0460 Bail Bond Agent
+ 0470 Bail Bond Runner
+ 0480 Bail Bond Permittee
+ 0490 Bail Solicitor
+ 0500 Bait Dealer
+ 0510 Barber
+ 0520 Barber Apprentice
+ 0530 Barber Instructor
+ 0540 Barber Student
+ 0550 Barber Technician
+ 0560 Beekeeper
+ 0570 Blaster
+ 0580 Boiler Engineer
+ 0590 Boiler Inspector
+ 0600 Boiler Installer
+ 0610 Boiler Maker
+ 0620 Boiler Operator
+ 0630 Boiler Repairer
+ 0640 Bioler Welder
+ 0650 Boxer
+ 0660 Boxing Announcer
+ 0670 Boxing Judge
+ 0680 Boxing Manager
+ 0690 Boxing Matchmaker
+ 0700 Boxing Physician
+ 0710 Boxing Promoter
+ 0720 Boxing Referee
+ 0730 Boxing Second
+ 0740 Boxing Timekeeper
+ 0750 Boxing Trainer
+ 0760 Breath Analyzer Operator
+ 0770 Breeder, Fur Bearing Animals
+ 0780 Breeder, Game
+ 0790 Breeder, Game Birds
+ 0800 Breeder, Game Fish
+ 0810 Breeder, Wild Animals & Birds
+ 0820 Building Code Officer
+ 0830 Building Inspector
+ 0840 Butter Grader
+ 0850 Buttermaker
+ 0860 Cemetery Real Estate Broker/Salesperson
+ 0870 Cesspool Cleaner
+ 0880 Cheese Grader
+ 0890 Cheesemaker
+ 0900 Chemist
+ 1Source: The Directory of Professional and Occupational Regulation in the United States and Canada (1994), available from the
+ Council on Licensure, Enforcement and Regulation, P.O. Box 11910, Iron Works Pike, Lexington, KY 40578.
+ VI-(2)-1
+0910 Chick Dealer
+ 0920 Child Care Center Administrator
+ 0930 Child Care Provider
+ 0940 Child Health Associate
+ 0950 Chiropodist
+ 0960 Chiropractic Assistant
+ 0970 Chiropractic Trainee
+ 0980 Chiropractor
+ 0990 Clinical Laboratory Assistant
+ 1000 Clinical Laboratory Director
+ 1010 Clinical Laboratory Specialist
+ 1020 Clinical Laboratory Supervisor
+ 1030 Clinical Laboratory Technician
+ 1040 Clinical Laboratory Technologist
+ 1050 Clinical Laboratory Trainee
+ 1060 Collection Agency Manager
+ 1070 Collection Agency Solicitor
+ 1080 Collection Agent
+ 1090 Communications Pathologist
+ 1100 Compost Operator
+ 1110 Compressed Natural Gas Technician
+ 1120 Concrete Technician
+ 1130 Constable
+ 1140 Construction Supervisor
+ 1150 Contractor, Aerial Pesticide Applicator
+ 1160 Contractor, Air Conditioning
+ 1170 Contractor, Asbestos Abatement
+ 1180 Contractor, Boiler
+ 1190 Contractor, Building Moving/Demolition
+ 1200 Contractor, Cabinet & Mill Work
+ 1210 Contractor, Carpentry
+ 1220 Contractor, Chimney Cleaning
+ 1230 Contractor, Communications
+ 1240 Contractor, Concrete
+ 1250 Contractor, Dewatering Well
+ 1260 Contractor, Drywall
+ 1270 Contractor, Earthwork & Paving
+ 1280 Contractor, Electrical
+ 1290 Contractor, Elevator
+ 1300 Contractor, Engineering
+ 1310 Contractor, Excavation
+ 1320 Contractor, Fencing
+ 1330 Contractor, Fire Protection System
+ 1340 Contractor, Flooring
+ 1350 Contractor, General
+ 1360 Contractor, Glass & Glazing
+ 1370 Contractor, Hazardous Materials
+ 1380 Contractor, Heavy
+ 1390 Contractor, Institutional
+ 1400 Contractor, Insulation and Acoustical
+ 1410 Contractor, Lathing
+ 1420 Contractor, Lead Abatement
+ 1430 Contractor, Limited Specialty
+ 1440 Contractor, Liquified Petroleum Gas
+ 1450 Contractor, Low Voltage
+ 1460 Contractor, Manufactured housing
+ 1470 Contractor, Masonry
+ 1480 Contractor, Mechanical
+ 1490 Contractor, Metal Roofing
+ 1500 Contractor, Oilburner
+ 1510 Contractor, Ornamental Metal
+ 1520 Contractor, Painting & Decorating
+ 1530 Contractor, Pest Control (Structural)
+ 1540 Contractor, Pesticide
+ 1550 Contractor, Pipefitter
+ 1560 Contractor, Pipeline
+ 1570 Contractor, Plastering
+ 1580 Contractor, Plastering, Drywall & Acoustical
+ 1590 Contractor, Plumbing
+ 1600 Contractor, Plumbing & Heating
+ 1610 Contractor, Plumbing, Heating & AC
+ 1620 Contractor, Pollutant Storage Systems
+ 1630 Contractor, Public Works
+ 1640 Contractor, Pump Installation
+ 1650 Contractor, Refrigeration
+ 1660 Contractor, Residential
+ 1670 Contractor, Roofing
+ 1680 Contractor, Roofing, Siding & Sheet Metal
+ 1690 Contractor, Sanitary System
+ 1700 Contractor, Security Alarm
+ 1710 Contractor, Sheet Metal
+ 1720 Contractor, Sign
+ 1730 Contractor, Solar
+ 1740 Contractor, Specialty
+ 1750 Contractor, Specialty Electrical
+ 1760 Contractor, Specialty Structure
+ 1770 Contractor, Sprinklerfitter
+ 1780 Contractor, Steel
+ 1790 Contractor, Swimming Pool
+ 1800 Contractor, Terrazzo & Marble
+ 1810 Contractor, Tile
+ 1820 Contractor, Tile, Marble & Mosaic
+ 1830 Contractor, Tree Services
+ 1840 Contractor, Utility
+ 1850 Contractor, Water Conditioning
+ 1860 Contractor, Welding
+ 1870 Contractor, Well Drilling
+ 1880 Contractor, Wrecking
+ 1890 Cosmetologist
+ 1900 Cosmetology Apprentice
+ 1910 Cosmetology Instructor
+ 1920 Cosmetology Student
+ 1930 Cosmetology Technician
+ 1940 Cosmetology: Braider
+ 1950 Cosmetology: Cosmetician
+ 1960 Cosmetology: Esthetician
+ VI-(2)-2
+1970 Cosmetology: Esthetician Instructor
+ 1980 Cosmetology: Facialist
+ 1990 Cosmetology: Make-up Artist
+ 2000 Cosmetology: Manicurist
+ 2010 Cosmetology: Manicurist Instructor
+ 2020 Cosmetology: Shampooist
+ 2030 Cosmetology: Wig Specialist
+ 2040 Cotton Buyer
+ 2050 Counselor Supervisor
+ 2060 Counselor, Associate
+ 2070 Counselor, Clinical
+ 2080 Counselor, Pastoral
+ 2090 Counselor, Professional
+ 2100 Counselor, Registered Substance Abuse
+ 2110 Counselor, Substance Abuse
+ 2120 Court/Shorthand Reporter
+ 2130 Crane operator
+ 2140 Cytotechnologist
+ 2150 Dental Assistant
+ 2160 Dental Hygienist
+ 2170 Dental Laboratory Technician
+ 2180 Dental Specialist
+ 2190 Dental Technician
+ 2200 Dental Therapist
+ 2210 Dentist
+ 2220 Denturist
+ 2230 Dietetic Technician
+ 2240 Dietician
+ 2250 Drafter
+ 2260 Egg Dealer
+ 2270 Egg Grader
+ 2280 Egg Handler
+ 2290 Egg Processor
+ 2300 Electrical Administrator
+ 2310 Electrical Inspector
+ 2320 Electrical Sign Installer, Journeyman
+ 2330 Electrical Sign Installer, Master
+ 2340 Electrician
+ 2350 Electrician, Apprentice
+ 2360 Electrician, Elevator
+ 2370 Electrician Helper
+ 2380 Electrician, Industrial Maintenance
+ 2390 Electrician, Journeyman
+ 2400 Electrician, Limited
+ 2410 Electrician, Lineman
+ 2420 Electrician, Maintenance
+ 2430 Electrician, Master
+ 2440 Electrician, Residential
+ 2450 Electrician, Specialty
+ 2460 Electrician, Supervising
+ 2470 Electrician, Supervising Specialty
+ 2480 Electrologist
+ 2490 Electrology Instructor
+ 2500 Electroneuromyographer
+ 2510 Elevator Constructor
+ 2520 Elevator Inspector
+ 2530 Elevator Mechanic
+ 2540 Elevator Mechanic, Apprentice
+ 2550 Elevator Operator
+ 2560 Embalmer
+ 2570 Embalmer Apprentice
+ 2580 Embryo Transfer Technician (cattle)
+ 2590 Emergency Medical Services Instructor
+ 2600 Emergency Medical Technician (EMT)
+ 2610 EMT: Ambulance
+ 2620 EMT: Cardiac
+ 2630 EMT: Defibrillator
+ 2640 EMT: Intermediate
+ 2650 EMT: IV
+ 2660 EMT Shock Trauma
+ 2670 Employment Agency Manager
+ 2680 Employment Agent
+ 2690 Employment Counselor
+ 2700 Engineer Technologist
+ 2710 Engineer, Acoustical
+ 2720 Engineer, Aeronautic/Aerospace
+ 2730 Engineer, Agricultural
+ 2740 Engineer, Architectural
+ 2750 Engineer, Architectural Marine
+ 2760 Engineer, Astronautical
+ 2770 Engineer, Ceramic
+ 2780 Engineer, Chemical
+ 2790 Engineer, Civil
+ 2800 Engineer, Construction
+ 2810 Engineer, Consulting
+ 2820 Engineer, Control Systems
+ 2830 Engineer, Corrosion
+ 2840 Engineer, Electrical
+ 2850 Engineer, Electronic
+ 2860 Engineer, Engineering Plastics
+ 2870 Engineer, Environmental
+ 2880 Engineer, Fire Protection
+ 2890 Engineer, Geodetic
+ 2900 Engineer, Geological
+ 2910 Engineer, Geotechnical
+ 2920 Engineer, Highway
+ 2930 Engineer, Hoisting
+ 2940 Engineer, HVAC
+ 2950 Engineer, Hydraulic
+ 2960 Engineer, Industrial
+ 2970 Engineer, Instrumental
+ 2980 Engineer, Manufacturing
+ 2990 Engineer, Marine
+ 3000 Engineer, Materials
+ 3010 Engineer, Mechanical
+ 3020 Engineer, Metallurgical
+ VI-(2)-3
+3030 Engineer, Mining
+ 3040 Engineer, Naval Architecture
+ 3050 Engineer, Nuclear
+ 3060 Engineer, Petroleum
+ 3070 Engineer, Plastics
+ 3080 Engineer, Plumbing
+ 3090 Engineer, Professional
+ 3100 Engineer, Quality
+ 3110 Engineer, Railroad
+ 3120 Engineer, Refrigeration
+ 3130 Engineer, Safety
+ 3140 Engineer, Sanitary
+ 3150 Engineer, Structural
+ 3160 Engineer, Systems
+ 3170 Engineer, Textile
+ 3180 Engineer, Traffic
+ 3190 Engineer, Transportation
+ 3200 Engineer-in-Training
+ 3210 Engineer/Surveyor
+ 3220 Explosives Dealer
+ 3230 Explosives Handler
+ 3240 Feed Dealer
+ 3250 Fertilizer Dealer
+ 3260 Fire Inspector
+ 3270 Fire Investigator
+ 3280 Fire Protection Company Manager
+ 3290 Fire Protection System Inspector
+ 3300 Fire Protection System Installer
+ 3310 Fire Protection Systems Seller
+ 3320 Firefighter
+ 3330 Firefighter Training Instructor
+ 3340 Fireworks Handler
+ 3350 First Responder
+ 3360 First Responder: Defibrillation
+ 3370 Fish Dealer
+ 3380 Fish Farmer
+ 3390 Fisher, Commercial
+ 3400 Forest Engineer
+ 3410 Forest Product Operator
+ 3420 Forester
+ 3430 Franchise Broker/Dealer
+ 3440 Frog Dealer
+ 3450 Fund Raiser, Professional
+ 3460 Funeral Arranger, Pre-need
+ 3470 Funeral Attendant
+ 3480 Funeral Direct Disposer
+ 3490 Funeral Director
+ 3500 Funeral Director Apprentice
+ 3510 Funeral Director, Assistant
+ 3520 Funeral Director/Embalmer
+ 3530 Funeral Director/Embalmer Apprentice
+ 3540 Funeral Service Intern
+ 3550 Funeral Service Practitioner
+ 3560 Fur Buyer
+ 3570 Fur Dealer
+ 3580 Fur Processor
+ 3590 Fur Trapper
+ 3600 Gaming Employee
+ 3610 Gaming Equipment Distributor
+ 3620 Gaming Establishment Owner
+ 3630 Gaming Manager
+ 3640 Gaming Operator
+ 3650 Gas Fitter
+ 3660 Geochemist
+ 3670 Geologist
+ 3680 Geologist, Engineering
+ 3690 Geophysicists
+ 3700 Ginner, Public
+ 3710 Ginseng Dealer
+ 3720 Ginseng Grower
+ 3730 Grain Dealer
+ 3740 Grain Sampler/Grader
+ 3750 Grain Tester
+ 3760 Grain Warehouse Operator
+ 3770 Greyhound Racing Employee
+ 3780 Groundwater Professional
+ 3790 Guard Dog Handler
+ 3800 Guide/Outfitter
+ 3810 Hairdresser
+ 3820 Hairdresser Instructor
+ 3830 Harness Racing Driver
+ 3840 Harness Racing Employee
+ 3850 Hazardous Material Management Consultant
+ 3860 Hazardous Waste Management Specialist
+ 3870 Hazardous Waste Transporter
+ 3880 Health Facility Administrator
+ 3890 Health Officer, Public
+ 3900 Health Physics Services Vendor
+ 3910 Hearing Aid Dealer/Fitter
+ 3920 Hearing Aid Dealer/Fitter Trainee
+ 3930 Hemodialysis Technician
+ 3940 Hoisting Machinery Operator
+ 3950 Home Health Aide
+ 3960 Home Improvement Salesperson
+ 3970 Home Management Provider
+ 3980 Homeopath
+ 3990 Horse Racing Employee
+ 4000 Horse Racing Jockey
+ 4010 Horticulturist
+ 4020 Hunter Education Instructor
+ 4030 Hypnotherapist
+ 4040 Incinerator Operator
+ 4050 Infra-Red Analyzer Repair Technician
+ 4060 Instructor, Guide Dogs for the Blind
+ 4070 Insurance Adjuster
+ 4080 Insurance Adjuster/Appraiser
+ VI-(2)-4
+4090 Insurance Administrator
+ 4100 Insurance Agent
+ 4110 Insurance Broker
+ 4120 Insurance Consultant
+ 4130 Insurance Escrow Officer
+ 4140 Insurance Representative
+ 4150 Insurance Solicitor
+ 4160 Insurance: Financial Planner
+ 4170 Insurance: Reinsurance Intermediary
+ 4180 Insurance: Stock Agent
+ 4190 Insurance: Surplus Lines Agent
+ 4200 Insurance: Surplus Lines Broker/Agent
+ 4210 Insurance: Third Party Administrator
+ 4220 Interior Designer
+ 4230 Irrigator
+ 4240 Kickboxer
+ 4250 Kinesiological Electromyographer
+ 4260 Labor Contractor
+ 4270 Land Surveyor
+ 4280 Land Surveyor-in-Training
+ 4290 Landfarming Operator
+ 4300 Landfill Operator
+ 4310 Landscape Architect
+ 4320 Landscape Contractor
+ 4330 Law Enforcement Officer
+ 4340 Law Enforcement Training Instructor 
+4350 Lead Abatement Supervisor
+ 4360 Lead Abatement Training Provider
+ 4370 Lead Abatement Worker
+ 4380 Lead Inspector, Environmental
+ 4390 Lead Inspector-Technician, Environmental
+ 4400 Lead Technician, Environmental
+ 4410 Librarian
+ 4420 Liquefied Petroleum Gas Dealer
+ 4430 Liquefied Petroleum Gas Installer/Repairer
+ 4440 Liquefied Petroleum Gas Safety Supervisor
+ 4450 Liquefied Petroleum Gas Truck Driver
+ 4460 Livestock Agent
+ 4470 Livestock Auction Operator
+ 4480 Livestock Auctioneer
+ 4490 Livestock Buyer/Broker
+ 4500 Livestock Dealer
+ 4510 Livestock Dealer Representative
+ 4520 Livestock Hauler
+ 4530 Lobbyist
+ 4540 Manufactured Home Broker
+ 4550 Manufactured Home Dealer/Salesperson
+ 4560 Manufactured Home Inspector
+ 4570 Manufactured Home Installer
+ 4580 Manufactured Home Mechanic
+ 4590 Marital Mediator
+ 4600 Marriage and Family Therapist
+ 4610 Marriage and Family Therapist Intern
+ 4620 Massage Therapist
+ 4630 Mechanical Inspector
+ 4640 Mechanical Journeyman
+ 4650 Mechanical Master
+ 4660 Medical Assistant
+ 4670 Medical Physicist
+ 4680 Medication Aide
+ 4690 Microbiologist, Public Health
+ 4700 Midwife, Direct Entry
+ 4710 Milk Dealer
+ 4720 Milk Distributor
+ 4730 Milk Equipment Installer
+ 4740 Milk Gathering Plant Manager
+ 4750 Milk Grader/Sampler/Hauler
+ 4760 Milk Inspector
+ 4770 Milk Laboratory Technician
+ 4780 Milk Pasteurizer
+ 4790 Milk Processing Plant Operator
+ 4800 Milk Tank Calibrator
+ 4810 Milk Tester
+ 4820 Mine Belt Examiner
+ 4830 Mine Blaster
+ 4840 Mine Electrician
+ 4850 Mine Examiner
+ 4860 Mine Fire Boss
+ 4870 Mine Foreman
+ 4880 Mine Hoisting Engineer
+ 4890 Mine Inspector
+ 4900 Mine Manager
+ 4910 Mine Operator
+ 4920 Mine Shot Firer
+ 4930 Mine Superintendent
+ 4940 Mine Supervisor
+ 4950 Mine Surface Blaster
+ 4960 Mine Surveyor
+ 4970 Miner
+ 4980 Mobile Home Park Manager
+ 4990 Mobile Home Park Owner
+ 5000 Money Broker
+ 5010 Mortgage Banker
+ 5020 Mortgage Lender/Broker
+ 5030 Motor Vehicle Brake Mechanic
+ 5040 Motor Vehicle Emissions Inspector
+ 5050 Motor Vehicle Emissions Mechanic
+ 5060 Motor Vehicle Inspector
+ 5070 Motor Vehicle Lamp Mechanic
+ 5080 Motor Vehicle Mechanic
+ 5090 Motor Vehicle Representative
+ 5100 Motor Vehicle Salesperson, New
+ 5110 Motor Vehicle Salesperson, Used
+ 5120 Municipal Auditor
+ 5130 Mussel Dealer
+ 5140 Mussel Sheller
+ VI-(2)-5
+5150 Naprapath
+ 5160 Naturopath
+ 5170 Notary Public
+ 5180 Nuclear Medicine Technician
+ 5190 Nuclear Medicine Technologist
+ 5200 Nuclear Power Operator
+ 5210 Nurse Anesthetist
+ 5220 Nurse Midwife
+ 5230 Nurse Practitioner
+ 5240 Nurse Specialist, Clinical
+ 5250 Nurse, Licensed Practical
+ 5260 Nurse, Psychiatric
+ 5270 Nurse, Public Health
+ 5280 Nurse, Registered
+ 5290 Nursery Agent
+ 5300 Nursery Dealer
+ 5310 Nursery Grower
+ 5320 Nursing Assistant
+ 5330 Nursing Home Administrator
+ 5340 Nutrition Counselor
+ 5350 Nutritionist
+ 5360 Occupational Therapist
+ 5370 Occupational Therapy Assistant
+ 5380 Ocularist
+ 5390 Off-Track Betting Employee
+ 5400 Oil Burner Technician
+ 5410 Oil Burner Technician Apprentice
+ 5420 Optician
+ 5430 Optician Apprentice
+ 5440 Optician, Technician
+ 5450 Optometrist
+ 5460 Osteopath
+ 5470 Osteopath Assistant
+ 5480 Paramedic
+ 5490 Pawnbroker
+ 5500 Pest Control Applicator, Structural
+ 5510 Pest Control Operator, Structural
+ 5520 Pesticide Applicator
+ 5530 Pesticide Applicator, Aerial
+ 5540 Pesticide Dealer
+ 5550 Pesticide Operator
+ 5560 Pharmaceutical Clerk
+ 5570 Pharmacist
+ 5580 Pharmacy Assistant
+ 5590 Pharmacy Intern
+ 5600 Physical Therapist
+ 5610 Physical Therapy Assistant
+ 5620 Physician
+ 5630 Physician Assistant
+ 5640 Pilot, Marine
+ 5650 Pipe Layer
+ 5660 Pipe Mechanic
+ 5670 Pipefitter, Apprentice
+ 5680 Pipefitter, Journeyman
+ 5690 Pipefitter, Master
+ 5700 Plumber
+ 5710 Plumber, Apprentice
+ 5720 Plumber, Journeyman
+ 5730 Plumber, Master
+ 5740 Plumbing, Inspector
+ 5750 Podiatrist
+ 5760 Polygraph Examiner
+ 5770 Polygraph Intern
+ 5780 Pre-School Program Director
+ 5790 Private Investigator
+ 5800 Private Investigator Agency Owner
+ 5810 Private Investigator Trainee
+ 5820 Produce Dealer
+ 5830 Produce Dealers Agent
+ 5840 Produce Packer
+ 5850 Property Tax Agent
+ 5860 Prosthetist
+ 5870 Psychiatric Aide
+ 5880 Psychological Examiner
+ 5890 Psychologist
+ 5900 Psychologist Assistant
+ 5910 Psychologist Associate
+ 5920 Psychologist Intern
+ 5930 Psychologist, Clinical
+ 5940 Psychologist, Consulting
+ 5950 Pump Installer
+ 5960 Radiation Machine Inspector
+ 5970 Radiation Therapist
+ 5980 Radiographer, Industrial
+ 5990 Radiologic Technician
+ 6000 Radiologic Technologist
+ 6010 Radiology Practical Technologist
+ 6020 Radon Measurement Specialist
+ 6030 Radon Mitigation Specialist
+ 6040 Real Estate Appraiser
+ 6050 Real Estate Appraiser Intern
+ 6060 Real Estate Appraiser, Certified
+ 6070 Real Estate Appraiser, General
+ 6080 Real Estate Appraiser, Registered
+ 6090 Real Estate Appraiser, Residential
+ 6100 Real Estate Associate Broker
+ 6110 Real Estate Auctioneer
+ 6120 Real Estate Broker
+ 6130 Real Estate Escrow Officer
+ 6140 Real Estate Inspector
+ 6150 Real Estate Instructor
+ 6160 Real Estate Property Manager
+ 6170 Real Estate Salesperson
+ 6180 Real Estate Timeshare Salesperson
+ 6190 Recreational Therapist
+ 6200 Reflexology Therapist
+ VI-(2)-6
+6210 Refrigeration & Air Condition Technician
+ 6220 Refrigeration Journeyman
+ 6230 Refrigeration Technician
+ 6240 Refrigeration Trainee
+ 6250 Rehabilitation Counselor
+ 6260 Repossessor Employee
+ 6270 Repossessor Qualified Manager
+ 6280 Reptile/Amphibian Collector
+ 6290 Research Animal Dealer
+ 6300 Residential Care Administrator
+ 6310 Residential Designer
+ 6320 Respiratory Care Technician
+ 6330 Respiratory Care Trainee
+ 6340 Respiratory Therapist
+ 6350 Sanitarian
+ 6360 Sanitarian Intern
+ 6370 School Administrator
+ 6380 School Audiologist
+ 6390 School Business Official
+ 6400 School Counselor
+ 6410 School Dance Therapist
+ 6420 School Guidance Counselor
+ 6430 School Librarian
+ 6440 School Music Therapist
+ 6450 School Nurse
+ 6460 School Occupational Therapist
+ 6470 School Physical Therapist
+ 6480 School Principal
+ 6490 School Psychologist
+ 6500 School Social Worker
+ 6510 School Speech Pathologist
+ 6520 School Superintendent
+ 6530 School Supervisor
+ 6540 Seafood Dealer
+ 6550 Securities Agent
+ 6560 Securities Broker/Dealer
+ 6570 Securities: Agent of Issuer
+ 6580 Securities: Investment Advisor
+ 6590 Securities: Investment Advisor Representative
+ 6600 Security Alarm Company Manager
+ 6610 Security Alarm Employee/Installer
+ 6620 Security Alarm Salesperson
+ 6630 Security Guard
+ 6640 Security Guard Agency Operator
+ 6650 Security Guard Agency Owner
+ 6660 Seed Broker
+ 6670 Seed Dealer
+ 6680 Seed Labeler
+ 6690 Seed Processor
+ 6700 Seed Seller
+ 6710 Septic Tank Installer
+ 6720 Septic Tank Pumper
+ 6730 Septic Tank Site Technician
+ 6740 Sewage Disposal System Installer
+ 6750 Sewage Hauler
+ 6760 Sewer/Water Apprentice
+ 6770 Sewer/Water Installer
+ 6780 Shell Fisher
+ 6790 Shooting Preserve Operator
+ 6800 Social Service Aide
+ 6810 Social Service Worker
+ 6820 Social Work Associate
+ 6830 Social Work Technician
+ 6840 Social Worker
+ 6850 Social Worker, Clinical
+ 6860 Social Worker, Independent
+ 6870 Soil Classifier
+ 6880 Soil Classifier-in-Training
+ 6890 Soil Scientist
+ 6900 Soil Tester
+ 6910 Solid Fuel Burner Technician, Apprentice
+ 6920 Solid Fuel Burner Technician, Master
+ 6930 Speech Pathologist
+ 6940 Speech Pathology Aide
+ 6950 Sprinklerfitter, Journeyman
+ 6960 Sprinklerfitter, Apprentice
+ 6970 Steam Engineer
+ 6980 Storage Tank Inspector
+ 6990 Storage Tank Installer
+ 7000 Storage Tank Installer/Remover
+ 7010 Subcontractor
+ 7020 Sweet Potato Dealer
+ 7030 Tattoo Artist
+ 7040 Tax Consultant
+ 7050 Tax Preparer
+ 7060 Taxidermist
+ 7070 Travel Agent
+ 7080 Tree Injector
+ 7090 Tree Surgeon
+ 7100 TV/Radio Antenna Installer
+ 7110 TV/Radio Service Dealer
+ 7120 TV/Radio Service Technician
+ 7130 TV/Radio Service Technician Apprentice
+ 7140 Underground Storage Tank Cathodic Protector
+ 7150 Underground Storage Tank Consultant
+ 7160 Underground Storage Tank Inspector
+ 7170 Underground Storage Tank Installer/Remover
+ 7180 Underground Storage Tank Reliner
+ 7190 Underground Storage Tank Repairer
+ 7200 Underground Storage Tank Site Assessor
+ 7210 Underground Storage Tank Subsurface
+ Evaluator 
+7220 Underground Storage Tank Supervisor
+ 7230 Underground Storage Tank Tester
+ 7240 Underground Storage Tank Upgrader
+ 7250 Underground Storage Tank: Soil Sampler
+ VI-(2)-7
+7260 Uniform Dwelling Code Inspector
+ 7270 Urban Planner
+ 7280 Veterinarian
+ 7290 Veterinary Euthanasia Technician
+ 7300 Veterinary Technician
+ 7310 Voice Stress Analyst
+ 7320 Warehouser
+ 7330 Waste Disposal Inspector
+ 7340 Waste Disposal Operator
+ 7350 Wastewater Collection Operator
+ 7360 Wastewater Treatment Operator
+ 7370 Water Conditioning Installer
+ 7380 Water Distribution Operator
+ 7390 Water Rights Surveyor
+ 7400 Water Treatment Installer
+ 7410 Water Treatment Operator
+ 7420 Weatherization Inspector
+ 7430 Weighmaster
+ 7440 Weights and Measures Mechanic
+ 7450 Welder
+ 7460 Well Driller
+ 7470 Well Drilling Operator
+ 7480 Well Monitoring Supervisor
+ 7490 Well Operator
+ 7500 Wireman, Residential
+ 7510 Workers Compensation Adjuster
+ 7520 Wrestler
+ 7530 Wrestling Judge
+ 7540 Wrestling Manager
+ 7550 Wrestling Matchmaker
+ 7560 Wrestling Promotor
+ 7570 Wrestling Referee
+ 7580 Wrestling Second
+ 7590 Wrestling Timekeeper
+ 7600 X-Ray Machine Servicer
+ 7610 X-Ray Machine Operator
+ 7620 X-Ray Technician
+ 7630 X-Ray Technologist

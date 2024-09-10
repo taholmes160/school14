@@ -1,9 +1,10 @@
 # app/forms.py
-    
+
 from flask_wtf import FlaskForm
 from wtforms import DateField, StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, HiddenField
+from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
-from app.models import Role
+from app.models import Role, Gender, GenderIdentity, Pronoun, FamilyStructure, CustodialArrangement, RacialCategory, EthnicBackground, PrimaryLanguage, OtherLanguage, CitizenshipStatus, Country, ImmigrationStatus, FamilyIncomeBracket, ParentEducationLevel, ParentOccupation, CurrentGradeLevel, IEPStatus, BusRouteDistrict, BusRouteNumber, SportsTeamParticipation, ClubMembership, InternetAccess, DeviceOwnership, ActiveDutyParent, VeteranStatusParent, HomelessStatus, MigrantEducationProgram, FosterCareInvolvement, TribalAffiliation, ReligiousAffiliation, State, ParentLifeStatus, EnrollmentStatus, ExitWithdrawalStatus, ExitWithdrawalType, NonPromotionReason, DisabilityTypePrimary, DisabilityTypeSecondary, DisabilityTypeTertiary
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=4, max=80)])
@@ -52,16 +53,52 @@ class AdvancedSearchForm(FlaskForm):
 
 class UserProfileForm(FlaskForm):
     age = IntegerField('Age', validators=[DataRequired()])
-    grade = StringField('Grade', validators=[DataRequired()])
+    grade = QuerySelectField('Grade', query_factory=lambda: CurrentGradeLevel.query.all(), get_label='name', allow_blank=True)
     preferred_name = StringField('Preferred Name', validators=[Length(max=80)])
     date_of_birth = DateField('Date of Birth', format='%Y-%m-%d', validators=[DataRequired()])
     place_of_birth = StringField('Place of Birth', validators=[Length(max=255)])
-    gender = SelectField('Gender', choices=[('male', 'Male'), ('female', 'Female')], validators=[DataRequired()])
-    gender_identity = SelectField('Gender Identity', choices=[('cisgender', 'Cisgender'), ('transgender', 'Transgender'), ('non_binary', 'Non-binary'), ('other', 'Other')], validators=[Length(max=50)])
-    pronouns = SelectField('Pronouns', choices=[('he/him', 'He/Him'), ('she/her', 'She/Her'), ('they/them', 'They/Them'), ('other', 'Other')], validators=[Length(max=50)])
+    gender = QuerySelectField('Gender', query_factory=lambda: Gender.query.all(), get_label='name', allow_blank=True)
+    gender_identity = QuerySelectField('Gender Identity', query_factory=lambda: GenderIdentity.query.all(), get_label='name', allow_blank=True)
+    pronouns = QuerySelectField('Pronouns', query_factory=lambda: Pronoun.query.all(), get_label='name', allow_blank=True)
     home_address = StringField('Home Address', validators=[Length(max=255)])
     phone_numbers = StringField('Phone Numbers', validators=[Length(max=255)])
     email_address = StringField('Email Address', validators=[Email(), Length(max=120)])
+    family_structure = QuerySelectField('Family Structure', query_factory=lambda: FamilyStructure.query.all(), get_label='name', allow_blank=True)
+    custodial_arrangement = QuerySelectField('Custodial Arrangement', query_factory=lambda: CustodialArrangement.query.all(), get_label='name', allow_blank=True)
+    racial_category = QuerySelectField('Racial Category', query_factory=lambda: RacialCategory.query.all(), get_label='name', allow_blank=True)
+    ethnic_background = QuerySelectField('Ethnic Background', query_factory=lambda: EthnicBackground.query.all(), get_label='name', allow_blank=True)
+    primary_language = QuerySelectField('Primary Language', query_factory=lambda: PrimaryLanguage.query.all(), get_label='name', allow_blank=True)
+    other_language = QuerySelectField('Other Language', query_factory=lambda: OtherLanguage.query.all(), get_label='name', allow_blank=True)
+    citizenship_status = QuerySelectField('Citizenship Status', query_factory=lambda: CitizenshipStatus.query.all(), get_label='name', allow_blank=True)
+    country = QuerySelectField('Country', query_factory=lambda: Country.query.all(), get_label='name', allow_blank=True)
+    immigration_status = QuerySelectField('Immigration Status', query_factory=lambda: ImmigrationStatus.query.all(), get_label='name', allow_blank=True)
+    family_income_bracket = QuerySelectField('Family Income Bracket', query_factory=lambda: FamilyIncomeBracket.query.all(), get_label='name', allow_blank=True)
+    parent_education_level = QuerySelectField('Parent Education Level', query_factory=lambda: ParentEducationLevel.query.all(), get_label='name', allow_blank=True)
+    parent_occupation = QuerySelectField('Parent Occupation', query_factory=lambda: ParentOccupation.query.all(), get_label='name', allow_blank=True)
+    current_grade_level = QuerySelectField('Current Grade Level', query_factory=lambda: CurrentGradeLevel.query.all(), get_label='name', allow_blank=True)
+    iep_status = QuerySelectField('IEP Status', query_factory=lambda: IEPStatus.query.all(), get_label='name', allow_blank=True)
+    bus_route_district = QuerySelectField('Bus Route District', query_factory=lambda: BusRouteDistrict.query.all(), get_label='name', allow_blank=True)
+    bus_route_number = QuerySelectField('Bus Route Number', query_factory=lambda: BusRouteNumber.query.all(), get_label='name', allow_blank=True)
+    sports_team_participation = QuerySelectField('Sports Team Participation', query_factory=lambda: SportsTeamParticipation.query.all(), get_label='name', allow_blank=True)
+    club_membership = QuerySelectField('Club Membership', query_factory=lambda: ClubMembership.query.all(), get_label='name', allow_blank=True)
+    internet_access = QuerySelectField('Internet Access', query_factory=lambda: InternetAccess.query.all(), get_label='name', allow_blank=True)
+    device_ownership = QuerySelectField('Device Ownership', query_factory=lambda: DeviceOwnership.query.all(), get_label='name', allow_blank=True)
+    active_duty_parent = QuerySelectField('Active Duty Parent', query_factory=lambda: ActiveDutyParent.query.all(), get_label='name', allow_blank=True)
+    veteran_status_parent = QuerySelectField('Veteran Status Parent', query_factory=lambda: VeteranStatusParent.query.all(), get_label='name', allow_blank=True)
+    homeless_status = QuerySelectField('Homeless Status', query_factory=lambda: HomelessStatus.query.all(), get_label='name', allow_blank=True)
+    migrant_education_program = QuerySelectField('Migrant Education Program', query_factory=lambda: MigrantEducationProgram.query.all(), get_label='name', allow_blank=True)
+    foster_care_involvement = QuerySelectField('Foster Care Involvement', query_factory=lambda: FosterCareInvolvement.query.all(), get_label='name', allow_blank=True)
+    tribe_membership = QuerySelectField('Tribe Membership', query_factory=lambda: TribalAffiliation.query.all(), get_label='name', allow_blank=True)
+    religious_affiliation = QuerySelectField('Religious Affiliation', query_factory=lambda: ReligiousAffiliation.query.all(), get_label='name', allow_blank=True)
+    state = QuerySelectField('State', query_factory=lambda: State.query.all(), get_label='name', allow_blank=True)
+    parent_life_status = QuerySelectField('Parent Life Status', query_factory=lambda: ParentLifeStatus.query.all(), get_label='name', allow_blank=True)
+    enrollment_status = QuerySelectField('Enrollment Status', query_factory=lambda: EnrollmentStatus.query.all(), get_label='name', allow_blank=True)
+    exit_withdrawal_status = QuerySelectField('Exit/Withdrawal Status', query_factory=lambda: ExitWithdrawalStatus.query.all(), get_label='name', allow_blank=True)
+    exit_withdrawal_type = QuerySelectField('Exit/Withdrawal Type', query_factory=lambda: ExitWithdrawalType.query.all(), get_label='name', allow_blank=True)
+    non_promotion_reason = QuerySelectField('Non-Promotion Reason', query_factory=lambda: NonPromotionReason.query.all(), get_label='name', allow_blank=True)
+    disability_type_primary = QuerySelectField('Disability Type - Primary', query_factory=lambda: DisabilityTypePrimary.query.all(), get_label='name', allow_blank=True)
+    disability_type_secondary = QuerySelectField('Disability Type - Secondary', query_factory=lambda: DisabilityTypeSecondary.query.all(), get_label='name', allow_blank=True)
+    disability_type_tertiary = QuerySelectField('Disability Type - Tertiary', query_factory=lambda: DisabilityTypeTertiary.query.all(), get_label='name', allow_blank=True)
     submit = SubmitField('Update')
 
 class SelectGradeForm(FlaskForm):
