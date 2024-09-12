@@ -154,12 +154,18 @@ def user_profile(user_id):
     form = UserProfileForm(obj=user.student_profile)  # Populate the form with student profile data
 
     if form.validate_on_submit():
+        print("Form submitted successfully")
+        print("Grade:", form.grade.data)
         form.populate_obj(user.student_profile)
         db.session.commit()
         flash('Profile updated successfully')
         return redirect(url_for('main.users'))  # Redirect to the users list
 
+    # Debugging: Check the current grade value
+    print("Current Grade in DB:", user.student_profile.grade_id)
+
     return render_template('user_profile.html', user=user, form=form)
+    
 
 @main.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
 @login_required
