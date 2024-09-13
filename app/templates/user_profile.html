@@ -172,13 +172,6 @@
         {% endfor %}
     </div>
     <div>
-        {{ form.current_grade_level.label }}<br>
-        {{ form.current_grade_level() }}<br>
-        {% for error in form.current_grade_level.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </div>
-    <div>
         {{ form.iep_status.label }}<br>
         {{ form.iep_status() }}<br>
         {% for error in form.iep_status.errors %}

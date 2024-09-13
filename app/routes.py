@@ -1,12 +1,10 @@
-# app/routes.py
-
 from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request, Blueprint, send_file
 from flask_login import current_user, login_user, logout_user, login_required
 from weasyprint import HTML
 from io import BytesIO
 from app import db
-from app.models import User, Role, StudentProfile, EthnicBackground
+from app.models import User, Role, StudentProfile, EthnicBackground, Language
 from app.forms import LoginForm, UserForm, UserTypeForm, UserProfileForm, BatchUpdateForm, AdvancedSearchForm, SelectGradeForm
 
 main = Blueprint('main', __name__)
@@ -154,18 +152,12 @@ def user_profile(user_id):
     form = UserProfileForm(obj=user.student_profile)  # Populate the form with student profile data
 
     if form.validate_on_submit():
-        print("Form submitted successfully")
-        print("Grade:", form.grade.data)
         form.populate_obj(user.student_profile)
         db.session.commit()
         flash('Profile updated successfully')
         return redirect(url_for('main.users'))  # Redirect to the users list
 
-    # Debugging: Check the current grade value
-    print("Current Grade in DB:", user.student_profile.grade_id)
-
     return render_template('user_profile.html', user=user, form=form)
-    
 
 @main.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
 @login_required

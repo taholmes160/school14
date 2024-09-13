@@ -1,10 +1,8 @@
-# app/forms.py
-
 from flask_wtf import FlaskForm
 from wtforms import DateField, StringField, PasswordField, BooleanField, SelectField, SubmitField, IntegerField, HiddenField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
-from app.models import Role, Gender, GenderIdentity, Pronoun, FamilyStructure, CustodialArrangement, RacialCategory, EthnicBackground, PrimaryLanguage, OtherLanguage, CitizenshipStatus, Country, ImmigrationStatus, FamilyIncomeBracket, ParentEducationLevel, ParentOccupation, CurrentGradeLevel, IEPStatus, BusRouteDistrict, BusRouteNumber, SportsTeamParticipation, ClubMembership, InternetAccess, DeviceOwnership, ActiveDutyParent, VeteranStatusParent, HomelessStatus, MigrantEducationProgram, FosterCareInvolvement, TribalAffiliation, ReligiousAffiliation, State, ParentLifeStatus, EnrollmentStatus, ExitWithdrawalStatus, ExitWithdrawalType, NonPromotionReason, DisabilityTypePrimary, DisabilityTypeSecondary, DisabilityTypeTertiary
+from app.models import Role, Gender, GenderIdentity, Pronoun, FamilyStructure, CustodialArrangement, RacialCategory, EthnicBackground, Language, CitizenshipStatus, Country, ImmigrationStatus, FamilyIncomeBracket, ParentEducationLevel, ParentOccupation, CurrentGradeLevel, IEPStatus, BusRouteDistrict, BusRouteNumber, SportsTeamParticipation, ClubMembership, InternetAccess, DeviceOwnership, ActiveDutyParent, VeteranStatusParent, HomelessStatus, MigrantEducationProgram, FosterCareInvolvement, TribalAffiliation, ReligiousAffiliation, State, ParentLifeStatus, EnrollmentStatus, ExitWithdrawalStatus, ExitWithdrawalType, NonPromotionReason, DisabilityType
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=4, max=80)])
@@ -67,15 +65,14 @@ class UserProfileForm(FlaskForm):
     custodial_arrangement = QuerySelectField('Custodial Arrangement', query_factory=lambda: CustodialArrangement.query.all(), get_label='name', allow_blank=True)
     racial_category = QuerySelectField('Racial Category', query_factory=lambda: RacialCategory.query.all(), get_label='name', allow_blank=True)
     ethnic_background = QuerySelectField('Ethnic Background', query_factory=lambda: EthnicBackground.query.all(), get_label='name', allow_blank=True)
-    primary_language = QuerySelectField('Primary Language', query_factory=lambda: PrimaryLanguage.query.all(), get_label='name', allow_blank=True)
-    other_language = QuerySelectField('Other Language', query_factory=lambda: OtherLanguage.query.all(), get_label='name', allow_blank=True)
+    primary_language = QuerySelectField('Primary Language', query_factory=lambda: Language.query.all(), get_label='name', allow_blank=True)
+    other_language = QuerySelectField('Other Language', query_factory=lambda: Language.query.all(), get_label='name', allow_blank=True)
     citizenship_status = QuerySelectField('Citizenship Status', query_factory=lambda: CitizenshipStatus.query.all(), get_label='name', allow_blank=True)
     country = QuerySelectField('Country', query_factory=lambda: Country.query.all(), get_label='name', allow_blank=True)
     immigration_status = QuerySelectField('Immigration Status', query_factory=lambda: ImmigrationStatus.query.all(), get_label='name', allow_blank=True)
     family_income_bracket = QuerySelectField('Family Income Bracket', query_factory=lambda: FamilyIncomeBracket.query.all(), get_label='name', allow_blank=True)
     parent_education_level = QuerySelectField('Parent Education Level', query_factory=lambda: ParentEducationLevel.query.all(), get_label='name', allow_blank=True)
     parent_occupation = QuerySelectField('Parent Occupation', query_factory=lambda: ParentOccupation.query.all(), get_label='name', allow_blank=True)
-    current_grade_level = QuerySelectField('Current Grade Level', query_factory=lambda: CurrentGradeLevel.query.all(), get_label='name', allow_blank=True)
     iep_status = QuerySelectField('IEP Status', query_factory=lambda: IEPStatus.query.all(), get_label='name', allow_blank=True)
     bus_route_district = QuerySelectField('Bus Route District', query_factory=lambda: BusRouteDistrict.query.all(), get_label='name', allow_blank=True)
     bus_route_number = QuerySelectField('Bus Route Number', query_factory=lambda: BusRouteNumber.query.all(), get_label='name', allow_blank=True)
@@ -88,17 +85,17 @@ class UserProfileForm(FlaskForm):
     homeless_status = QuerySelectField('Homeless Status', query_factory=lambda: HomelessStatus.query.all(), get_label='name', allow_blank=True)
     migrant_education_program = QuerySelectField('Migrant Education Program', query_factory=lambda: MigrantEducationProgram.query.all(), get_label='name', allow_blank=True)
     foster_care_involvement = QuerySelectField('Foster Care Involvement', query_factory=lambda: FosterCareInvolvement.query.all(), get_label='name', allow_blank=True)
-    tribe_membership = QuerySelectField('Tribe Membership', query_factory=lambda: TribalAffiliation.query.all(), get_label='name', allow_blank=True)
+    tribe_membership = QuerySelectField('Tribal Membership', query_factory=lambda: TribalAffiliation.query.all(), get_label='name', allow_blank=True)
     religious_affiliation = QuerySelectField('Religious Affiliation', query_factory=lambda: ReligiousAffiliation.query.all(), get_label='name', allow_blank=True)
     state = QuerySelectField('State', query_factory=lambda: State.query.all(), get_label='name', allow_blank=True)
     parent_life_status = QuerySelectField('Parent Life Status', query_factory=lambda: ParentLifeStatus.query.all(), get_label='name', allow_blank=True)
     enrollment_status = QuerySelectField('Enrollment Status', query_factory=lambda: EnrollmentStatus.query.all(), get_label='name', allow_blank=True)
-    exit_withdrawal_status = QuerySelectField('Exit/Withdrawal Status', query_factory=lambda: ExitWithdrawalStatus.query.all(), get_label='name', allow_blank=True)
-    exit_withdrawal_type = QuerySelectField('Exit/Withdrawal Type', query_factory=lambda: ExitWithdrawalType.query.all(), get_label='name', allow_blank=True)
-    non_promotion_reason = QuerySelectField('Non-Promotion Reason', query_factory=lambda: NonPromotionReason.query.all(), get_label='name', allow_blank=True)
-    disability_type_primary = QuerySelectField('Disability Type - Primary', query_factory=lambda: DisabilityTypePrimary.query.all(), get_label='name', allow_blank=True)
-    disability_type_secondary = QuerySelectField('Disability Type - Secondary', query_factory=lambda: DisabilityTypeSecondary.query.all(), get_label='name', allow_blank=True)
-    disability_type_tertiary = QuerySelectField('Disability Type - Tertiary', query_factory=lambda: DisabilityTypeTertiary.query.all(), get_label='name', allow_blank=True)
+    exit_withdrawal_status = QuerySelectField('Exit Withdrawal Status', query_factory=lambda: ExitWithdrawalStatus.query.all(), get_label='name', allow_blank=True)
+    exit_withdrawal_type = QuerySelectField('Exit Withdrawal Type', query_factory=lambda: ExitWithdrawalType.query.all(), get_label='name', allow_blank=True)
+    non_promotion_reason = QuerySelectField('Non Promotion Reason', query_factory=lambda: NonPromotionReason.query.all(), get_label='name', allow_blank=True)
+    disability_type_primary = QuerySelectField('Disability Type - Primary', query_factory=lambda: DisabilityType.query.all(), get_label='name', allow_blank=True)
+    disability_type_secondary = QuerySelectField('Disability Type - Secondary', query_factory=lambda: DisabilityType.query.all(), get_label='name', allow_blank=True)
+    disability_type_tertiary = QuerySelectField('Disability Type - Tertiary', query_factory=lambda: DisabilityType.query.all(), get_label='name', allow_blank=True)
     submit = SubmitField('Update')
 
 class SelectGradeForm(FlaskForm):
